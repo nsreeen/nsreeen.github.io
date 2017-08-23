@@ -1,6 +1,13 @@
 import markdown2
 import os
+import re
 
+def replace_ticks_for_code(matchobj):
+    return '<code>' + matchobj.group(0)[1:-1] + '</code>'
+
+def fix_code_tags(html):
+    html = re.sub('`([a-zA-Z]+?)`', replace_ticks_for_code, html)
+    return html
 
 # get post text
 def get_post_md(post):
@@ -57,8 +64,8 @@ for post in posts:
     print(post)
     post_markdown = get_post_md(post)
     page, page_title, post_date =  get_post_html_and_meta(post_markdown)
+    page = fix_code_tags(page)
     page_url = get_url(page_title)
-    print('page_url: ', page_url)
     write_page_html(page, page_url)
     posts_data.append({'title': page_title, 'url': page_url, 'date': post_date})
 

@@ -24,6 +24,7 @@ A finite state machine is just a model for understanding something.  It models s
 
 <br>
 For example, a door can either be locked or not locked:
+
 ![Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other.](/blog/media/door_states.png "A door as a finite state machine")
 
 
@@ -61,6 +62,7 @@ So:
 </ul>
 <br>
 We can draw this as a finite state machine:
+
 ![Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled.](/blog/media/regex_machine.png "A regex pattern as a finite state machine")
 
 

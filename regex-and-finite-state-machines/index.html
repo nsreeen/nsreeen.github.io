@@ -96,8 +96,9 @@ Regular expressions patterns are implemented as finite state machines! I find th
 <p>A finite state machine is just a model for understanding something.  It models something that has different states, and that can only be in one of those states at one time.</p>
 
 <p><br>
-For example, a door can either be locked or not locked:
-<img src="/blog/media/door_states.png" alt="Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other." title="A door as a finite state machine" /></p>
+For example, a door can either be locked or not locked:</p>
+
+<p><img src="/blog/media/door_states.png" alt="Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other." title="A door as a finite state machine" /></p>
 
 <p><br>
 We can add the conditions that cause the state to change:</p>
@@ -120,9 +121,9 @@ A finite state machine is defined by:</p>
 <p>If I wanted to search a string for substrings that:</p>
 
 <ul>
-<li>start with `a`,</li>
-<li>have one or more `b`'s in the middle,</li></li>
-<li>and end with `c`,</li>
+<li>start with <code>a</code>,</li>
+<li>have one or more <code>b</code>'s in the middle,</li></li>
+<li>and end with <code>c</code>,</li>
 </ul>
 
 <p><br>
@@ -132,20 +133,21 @@ I could search for the regex pattern <code>ab+c</code> (where <code>+</code> mea
 So:</p>
 
 <ul>
-<li>`abc`, `abbbc`, and `abbbbbbbbc` would all match, </li>
-<li>but `ac` and `acb` wouldn't match.</li>
+<li><code>abc</code>, <code>abbbc</code>, and <code>abbbbbbbbc</code> would all match, </li>
+<li>but <code>ac</code> and <code>acb</code> wouldn't match.</li>
 </ul>
 
 <p><br>
-We can draw this as a finite state machine:
-<img src="/blog/media/regex_machine.png" alt="Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled." title="A regex pattern as a finite state machine" /></p>
+We can draw this as a finite state machine:</p>
+
+<p><img src="/blog/media/regex_machine.png" alt="Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled." title="A regex pattern as a finite state machine" /></p>
 
 <p><br>
 Notes:</p>
 
 <ul>
 <li>the double circle shows that state 3 is an end state (ie. if we get to state 3, we have found a match)</li>
-<li>some inputs do not cause a change in state (eg. in state 0, any input that is not `a` causes the state to remain 0)</li>
+<li>some inputs do not cause a change in state (eg. in state 0, any input that is not <code>a</code> causes the state to remain 0)</li>
 </ul>
 
 <p><br></p>
@@ -165,18 +167,18 @@ We will iterate through each character like this:</p>
 </tr>
 
 <tr>
-<td> 0 </td><td>  `a`  </td><td> 1 </td>
+<td> 0 </td><td>  <code>a</code>  </td><td> 1 </td>
 </tr>
 <tr>
-<td>  0, 1  </td><td> `a`  </td><td> 1  </td>
-</tr>
-
-<tr>
-<td>  0, 1   </td><td> `b`  </td><td> 0, 2</td>
+<td>  0, 1  </td><td> <code>a</code>  </td><td> 1  </td>
 </tr>
 
 <tr>
-<td> 0, 2  </td><td> `c`  </td><td> 0, 3 </td>
+<td>  0, 1   </td><td> <code>b</code>  </td><td> 0, 2</td>
+</tr>
+
+<tr>
+<td> 0, 2  </td><td> <code>c</code>  </td><td> 0, 3 </td>
 </tr>
 
 </table>
