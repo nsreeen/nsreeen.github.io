@@ -50,18 +50,18 @@ def get_page_list_unit(post):
     html = "<li><a href=" + post['url'] + ">" + post['title'] + "</li>"
     return html
 
+# makes index.html in root
+def make_post_list_page():
+    index_html = header + '<ul class="page-list">'
+    for post in ordered_posts:
+        index_html += get_page_list_unit(post)
+    index_html += "</ul>"
+    index_html += footer
+    with open('index.html', 'w') as index_file:
+        index_file.write(index_html)
 
-# get template html
-header = get_template('header')
-footer = get_template('footer')
-
-# get all posts in the posts folder
-posts = [post for post in os.listdir('blog/posts')]
-
-posts_data = []
-
-for post in posts:
-    print(post)
+# takes markdown file name, generates and writes the html file (in appropriate folder), and adds to posts data list
+def make_post_page(post):
     post_markdown = get_post_md(post)
     page, page_title, post_date =  get_post_html_and_meta(post_markdown)
     page = fix_code_tags(page)
@@ -69,19 +69,24 @@ for post in posts:
     write_page_html(page, page_url)
     posts_data.append({'title': page_title, 'url': page_url, 'date': post_date})
 
-ordered_posts = sorted(posts_data, reverse=True, key=lambda post: post['date'])
-print(ordered_posts)
 
-# makes index.html in root
-index_html = header + '<ul class="page-list">'
-for post in ordered_posts:
-    index_html += get_page_list_unit(post)
-index_html += "</ul>"
-index_html += footer
+if __name__ == "__main__":
 
-with open('index.html', 'w') as index_file:
-    index_file.write(index_html)
+    # get template html
+    header = get_template('header')
+    footer = get_template('footer')
 
+    # get all posts in the posts folder
+    posts = [post for post in os.listdir('blog/posts')]
 
-# updates atom feed
-# - to do
+    posts_data = []
+
+    for post in posts:
+        make_post_page(post)
+
+    ordered_posts = sorted(posts_data, reverse=True, key=lambda post: post['date'])
+
+    # write post list as index.html in root
+    make_post_list_page()
+
+    # updates atom feed - to do"""
