@@ -20,7 +20,10 @@ def get_post_html_and_meta(md_text):
 
 # get the url
 def get_url(title):
-    return "-".join(title.split()).lower()
+    url = "-".join(title.split()).lower()
+    if url[-1] == "?":
+        return url[:-1]
+    return url
 
 # write the html file
 def write_page_html(page_html, post_url):
@@ -55,6 +58,7 @@ for post in posts:
     post_markdown = get_post_md(post)
     page, page_title, post_date =  get_post_html_and_meta(post_markdown)
     page_url = get_url(page_title)
+    print('page_url: ', page_url)
     write_page_html(page, page_url)
     posts_data.append({'title': page_title, 'url': page_url, 'date': post_date})
 
