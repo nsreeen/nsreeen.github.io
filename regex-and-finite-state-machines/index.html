@@ -50,6 +50,10 @@
     li {
       margin-bottom: 15px;
     }
+    img {
+      max-width: 50%;
+    }
+
   </style>
   </head>
   <body>
@@ -93,18 +97,12 @@ Regular expressions patterns are implemented as finite state machines! I find th
 
 <p><br>
 For example, a door can either be locked or not locked:
-<img src="/blog/media/door_states.png" alt="Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other." /></p>
-
-<div class="col-sm-12">
-<img class="col-sm-8 col-sm-offset-1" src="https://github.com/Nasreen123/Nasreen123.github.io/blob/master/app/pages/door_states.png?raw=true" alt="Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other.">
-</div>
+<img src="/blog/media/door_states.png" alt="Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other." title="A door as a finite state machine" /></p>
 
 <p><br>
 We can add the conditions that cause the state to change:</p>
 
-<div class="col-sm-12">
-<img class="col-sm-8 col-sm-offset-1" src="https://github.com/Nasreen123/Nasreen123.github.io/blob/master/app/pages/door_states_with_conditions.png?raw=true" alt="The same image as above, but with labels added to the arrows: 'turn key right' leads to 'unlocked', and 'turn key left' leads to 'locked'.">
-</div>
+<p><img src="/blog/media/door_states_with_conditions.png" alt="The same image as above, but with the arrow leading to 'unlocked' labeled 'turn key right', and the arrow leading to 'locked' labeled 'turn key left'." title="A door as a finite state machine, with conditions" /></p>
 
 <p><br>
 A finite state machine is defined by:</p>
@@ -139,11 +137,8 @@ So:</p>
 </ul>
 
 <p><br>
-We can draw this as a finite state machine:</p>
-
-<div class="col-xs-12">
-<img class="col-xs-8 col-xs-offset-1" src="https://github.com/Nasreen123/Nasreen123.github.io/blob/master/app/pages/regex_machine.png?raw=true" alt="Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled.">
-</div>
+We can draw this as a finite state machine:
+<img src="/blog/media/regex_machine.png" alt="Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled." title="A regex pattern as a finite state machine" /></p>
 
 <p><br>
 Notes:</p>

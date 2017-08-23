@@ -24,17 +24,14 @@ A finite state machine is just a model for understanding something.  It models s
 
 <br>
 For example, a door can either be locked or not locked:
-![Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other.](/blog/media/door_states.png)
+![Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other.](/blog/media/door_states.png "A door as a finite state machine")
 
-<div class="col-sm-12">
-<img class="col-sm-8 col-sm-offset-1" src="https://github.com/Nasreen123/Nasreen123.github.io/blob/master/app/pages/door_states.png?raw=true" alt="Image of two circles: one has 'locked' written inside, and the other has 'unlocked' written inside.  There are two arrows, each pointing from one circle to the other.">
-</div>
+
 
 <br>
 We can add the conditions that cause the state to change:
-<div class="col-sm-12">
-<img class="col-sm-8 col-sm-offset-1" src="https://github.com/Nasreen123/Nasreen123.github.io/blob/master/app/pages/door_states_with_conditions.png?raw=true" alt="The same image as above, but with labels added to the arrows: 'turn key right' leads to 'unlocked', and 'turn key left' leads to 'locked'.">
-</div>
+
+![The same image as above, but with the arrow leading to 'unlocked' labeled 'turn key right', and the arrow leading to 'locked' labeled 'turn key left'.](/blog/media/door_states_with_conditions.png "A door as a finite state machine, with conditions")
 
 <br>
 A finite state machine is defined by:
@@ -64,9 +61,8 @@ So:
 </ul>
 <br>
 We can draw this as a finite state machine:
-<div class="col-xs-12">
-<img class="col-xs-8 col-xs-offset-1" src="https://github.com/Nasreen123/Nasreen123.github.io/blob/master/app/pages/regex_machine.png?raw=true" alt="Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled.">
-</div>
+![Image of a finite state machine with circles representing the states 0, 1, 2, 3, and 'not a match'.  'a' can move us from state 0 to 1, 'b' from state 1 to 2, and 'c' from state 2 to 3.  State 3 is double circled.](/blog/media/regex_machine.png "A regex pattern as a finite state machine")
+
 
 <br>
 Notes:

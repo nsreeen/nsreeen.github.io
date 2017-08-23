@@ -4,7 +4,7 @@ import os
 
 # get post text
 def get_post_md(post):
-    post_path = '../blog/posts/' + post
+    post_path = 'blog/posts/' + post
     with open(post_path, 'r') as post_file:
         post_text = post_file.read()
     return post_text
@@ -27,14 +27,14 @@ def get_url(title):
 
 # write the html file
 def write_page_html(page_html, post_url):
-    post_dir = '../' + post_url
-    if not os.path.exists(post_dir):
-        os.makedirs(post_dir)
-    with open(post_dir + '/index.html', 'w') as html_file:
+    if not os.path.exists(post_url):
+        os.makedirs(post_url)
+    with open(post_url + '/index.html', 'w') as html_file:
         html_file.write(page_html)
 
 # read file
-def get_file_contents(path):
+def get_template(template):
+    path = 'blog/templates/' + template + '.html'
     with open(path, 'r') as f:
         file_contents = f.read()
     return file_contents
@@ -45,11 +45,11 @@ def get_page_list_unit(post):
 
 
 # get template html
-header = get_file_contents('../blog/templates/header.html')
-footer = get_file_contents('../blog/templates/footer.html')
+header = get_template('header')
+footer = get_template('footer')
 
 # get all posts in the posts folder
-posts = [post for post in os.listdir('../blog/posts')]
+posts = [post for post in os.listdir('blog/posts')]
 
 posts_data = []
 
@@ -72,7 +72,7 @@ for post in ordered_posts:
 index_html += "</ul>"
 index_html += footer
 
-with open('../index.html', 'w') as index_file:
+with open('index.html', 'w') as index_file:
     index_file.write(index_html)
 
 
