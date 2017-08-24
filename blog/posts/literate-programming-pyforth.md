@@ -1,5 +1,5 @@
 """
-title: Forth implemented in Python: An experiment with literate programming
+title: Forth implemented in Python, An experiment with literate programming
 date: 2017-08-24 12:00:00
 published: true
 type: post
