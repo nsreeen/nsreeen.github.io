@@ -19,6 +19,7 @@ def get_post_md(post):
 # get the html of the whole posts page
 def get_post_html_and_meta(md_text):
     html = markdown2.markdown(md_text, extras=["tables", "metadata", "fenced-code-blocks"])
+    print('metadata: ', html.metadata)
     title = html.metadata['title']
     date = html.metadata['date']
     h1 = "<h1>" + title + "</h1>"
@@ -62,6 +63,7 @@ def make_post_list_page():
 
 # takes markdown file name, generates and writes the html file (in appropriate folder), and adds to posts data list
 def make_post_page(post):
+    print('\n post:', post)
     post_markdown = get_post_md(post)
     page, page_title, post_date =  get_post_html_and_meta(post_markdown)
     page = fix_code_tags(page)
