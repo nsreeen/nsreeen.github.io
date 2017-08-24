@@ -1,5 +1,5 @@
 """
-title: Forth implemented in Python, An experiment with literate programming
+title: Forth implemented in Python - An experiment with literate programming
 date: 2017-08-24 12:00:00
 published: true
 type: post
@@ -13,7 +13,7 @@ I chose to start with the code I wrote for [Pyforth](https://github.com/Nasreen1
 This is the first part of the literate program.  In this parts I will cover most of the parts of the interpreter (all except the input stream)
 
 <br>
-## Overview of Pyforth
+## Overview Forth
 
 The main parts of a Forth implementation are:
 
