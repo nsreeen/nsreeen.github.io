@@ -15,6 +15,7 @@
       font-size: 2em !important;
       line-height: 1.5;
     }
+
     a {
       color:inherit;
       text-decoration: none;
@@ -43,15 +44,31 @@
       list-style: none;
       text-decoration: none;
     }
-
-    hr {
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
       border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 2px solid grey;
     }
     li {
       margin-bottom: 15px;
     }
     img {
       max-width: 50%;
+    }
+    .container {
+      min-height: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .footer {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em;
     }
 
   </style>
@@ -63,7 +80,7 @@
   <div class="content" role="main">
 
   <div class="row">
-    <div class="col-sm-2 col-sm-offset-2">
+    <div class="col-sm-2 col-sm-offset-2 header">
       <a class="home-link" href="/">All posts</a>
 
     </div>
@@ -136,9 +153,14 @@
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&gt;  all the findings (even those mentioned above) have to be verified by a human</p>
 
 <p><br>User testing is important, and should include a diverse group of user who use the web in different ways.    Having a developer or tester navigate through the website using their keyboard or a screen reader is a good way to check.  But if they don’t usually use these tools to use the web, they are inexperienced users and so will not have the same experience as a more experienced user of the tool.</p>
-</div><!--  end container -->
-</div> <!--  end content block -->
+</div>
+</div>
 
 </div><!--  end content block CONTAINER -->
+<div class="row navbar-fixed-bottom">
+  <div class="col-sm-8 col-sm-offset-2 footer">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
 </body>
 </html>

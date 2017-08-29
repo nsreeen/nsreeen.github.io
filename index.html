@@ -15,6 +15,7 @@
       font-size: 2em !important;
       line-height: 1.5;
     }
+
     a {
       color:inherit;
       text-decoration: none;
@@ -43,15 +44,31 @@
       list-style: none;
       text-decoration: none;
     }
-
-    hr {
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
       border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 2px solid grey;
     }
     li {
       margin-bottom: 15px;
     }
     img {
       max-width: 50%;
+    }
+    .container {
+      min-height: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .footer {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em;
     }
 
   </style>
@@ -63,7 +80,7 @@
   <div class="content" role="main">
 
   <div class="row">
-    <div class="col-sm-2 col-sm-offset-2">
+    <div class="col-sm-2 col-sm-offset-2 header">
       <a class="home-link" href="/">All posts</a>
 
     </div>
@@ -74,9 +91,14 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <hr>
-<ul class="page-list"><li><a href=forth-implemented-in-python---an-experiment-with-literate-programming>Forth implemented in Python - An experiment with literate programming</li><li><a href=regex-and-finite-state-machines>Regex and finite state machines</li><li><a href=how-do-you-navigate-a-large-unknown-codebase>How do you navigate a large unknown codebase?</li><li><a href=calculator-interpreter>Calculator Interpreter</li><li><a href=the-week-of-pairing>The week of pairing</li><li><a href=web-accessibility-and-web-accessibility-testing>Web accessibility and web accessibility testing</li><li><a href=how-accessible-is-this-blog>How accessible is this blog?</li><li><a href=three-weeks-at-rc---some-reflections>Three weeks at RC - some reflections</li><li><a href=mutable-default-parameters-in-python>Mutable Default Parameters in Python</li></ul></div><!--  end container -->
-</div> <!--  end content block -->
+<ul class="page-list"><li><a href=forth-implemented-in-python---an-experiment-with-literate-programming>Forth implemented in Python - An experiment with literate programming</li><li><a href=regex-and-finite-state-machines>Regex and finite state machines</li><li><a href=how-do-you-navigate-a-large-unknown-codebase>How do you navigate a large unknown codebase?</li><li><a href=calculator-interpreter>Calculator Interpreter</li><li><a href=the-week-of-pairing>The week of pairing</li><li><a href=web-accessibility-and-web-accessibility-testing>Web accessibility and web accessibility testing</li><li><a href=how-accessible-is-this-blog>How accessible is this blog?</li><li><a href=three-weeks-at-rc---some-reflections>Three weeks at RC - some reflections</li><li><a href=mutable-default-parameters-in-python>Mutable Default Parameters in Python</li></ul></div>
+</div>
 
 </div><!--  end content block CONTAINER -->
+<div class="row navbar-fixed-bottom">
+  <div class="col-sm-8 col-sm-offset-2 footer">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
 </body>
 </html>

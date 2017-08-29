@@ -19,7 +19,6 @@ def get_post_md(post):
 # get the html of the whole posts page
 def get_post_html_and_meta(md_text):
     html = markdown2.markdown(md_text, extras=["tables", "metadata", "fenced-code-blocks"])
-    print('metadata: ', html.metadata)
     title = html.metadata['title']
     date = html.metadata['date']
     h1 = "<h1>" + title + "</h1>"
@@ -79,7 +78,7 @@ if __name__ == "__main__":
     footer = get_template('footer')
 
     # get all posts in the posts folder
-    posts = [post for post in os.listdir('blog/posts')]
+    posts = [post for post in os.listdir('blog/posts') if post[:2] != "xx"]
 
     posts_data = []
 
