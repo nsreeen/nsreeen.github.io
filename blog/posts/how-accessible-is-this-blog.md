@@ -13,6 +13,7 @@ but I am interested to see what kinds of issues come up even before adding compl
 <br>
 
 ##How will I do the audit?
+
 <br>I decided on the following steps:
 <br>
 
@@ -80,6 +81,7 @@ the scope of definitive automated testing, which could be very helpful.
 <br>
 
 ##3) Navigate the site using only a keyboard
+
 <br>I navigated through my blog using tab, alt&tab (to go back), and enter (to select).  This was straightforward because there are only a few pages.
 <br>
 <br>

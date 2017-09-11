@@ -39,7 +39,7 @@ A finite state machine is defined by:
 <ul>
 <li>  possible states</li>
 <li>  conditions that cause transitions between states to occur</li>
-<li>  the starting state (if appropriate <li>the door is always either locked or unlocked, so the diagrams above don't have a separate starting state)</li>
+<li>  the starting state (if appropriate - the door is always either locked or unlocked, so the diagrams above don't have a separate starting state)</li>
 </ul>
 
 <br>
