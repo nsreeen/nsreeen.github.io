@@ -12,7 +12,7 @@ but I am interested to see what kinds of issues come up even before adding compl
 <br>
 <br>
 
-###How will I do the audit?
+##How will I do the audit?
 <br>I decided on the following steps:
 <br>
 
@@ -26,7 +26,7 @@ but I am interested to see what kinds of issues come up even before adding compl
 <br>
 
 
-###1) Test using the pa11y command line tool and review the feedback it provides
+##1) Test using the pa11y command line tool and review the feedback it provides
 
 <br>On the main page of my blog, the pa11y [command line tool](https://github.com/pa11y/pa11y) found:<br>
 6 Errors<br>
@@ -70,7 +70,7 @@ the scope of definitive automated testing, which could be very helpful.
 <br>
 <br>
 
-###2) Check the contrast using the webaim tool
+##2) Check the contrast using the webaim tool
 
 <br>The [webaim tool](http://wave.webaim.org/) gives information about [contrast errors](http://webaim.org/resources/contrastchecker/).  It also gives other kinds of errors, which verified the feedback from the pa11y tool.
 
@@ -79,13 +79,13 @@ the scope of definitive automated testing, which could be very helpful.
 <br>
 <br>
 
-###3) Navigate the site using only a keyboard
+##3) Navigate the site using only a keyboard
 <br>I navigated through my blog using tab, alt&tab (to go back), and enter (to select).  This was straightforward because there are only a few pages.
 <br>
 <br>
 <br>
 
-###4) Assess the site using a screen reader emulator
+##4) Assess the site using a screen reader emulator
 
 <br>I used an addon for fire called [fangs](https://addons.mozilla.org/en-US/firefox/addon/fangs-screen-reader-emulator/contribute/roadblock/?src=search&version=1.0.8.1-signed.1-signed)
 
@@ -97,7 +97,7 @@ the scope of definitive automated testing, which could be very helpful.
 <br>
 <br>
 
-###5) Conclusion and improvements to make
+##5) Conclusion and improvements to make
 
 <br>Even though my site is very small, I still found improvements to make.  This really highlights to me how easy it is to overlook web accessibility, either through lack of knowledge or planning.  I think to overcome this, it's important to keep finding out more and sharing knowledge.
 

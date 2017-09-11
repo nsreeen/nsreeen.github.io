@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>Nasreen's blog</title>
@@ -17,7 +17,7 @@
     }
 
     a {
-      color:inherit;
+      color: #006060;
       text-decoration: none;
      }
     home-link {
@@ -51,7 +51,7 @@
       border: 1px solid grey;
     }*/
     header {
-      border-bottom: 2px solid grey;
+      border-bottom: 1px solid grey;
     }
     li {
       margin-bottom: 15px;
@@ -60,11 +60,13 @@
       max-width: 50%;
     }
     .container {
-      min-height: 100%;
+      /*min-height: 100%;*/
       height: 100%;
-      position: relative;
+      /*position: relative;*/
     }
-    .footer {
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
       padding-top: 10px;
       padding-bottom: 10px;
       border-top: 1px solid grey;
@@ -93,7 +95,7 @@
       <hr>
 <h1>Web accessibility and web accessibility testing</h1><p><br></p>
 
-<h2>###What is web accessibility?</h2>
+<h2>##What is web accessibility?</h2>
 
 <p>Web accessibility is about removing barriers which prevent people accessing the web.  Usually when people talk about web accessibility they’re talking about disability, and making sure that websites are usable in the different ways people use the internet.  However, web accessibility can be understood more broadly; issues like language (Is content available in a language you know? Do you always have to use a second or third language? Is the writing style unnecessarily academic and confusing? ) and internet connection speed are also about web accessibility.  Taken even more broadly, internet safety is also about accessibility, particularly the safety of groups who are marginalized. It’s part of a wider conversation about who the internet is for, and who benefits from it.</p>
 
@@ -101,9 +103,9 @@
 
 <p><br><br></p>
 
-<h2>###What are some ways websites can be more accessible?</h2>
+<h2>##What are some ways websites can be more accessible?</h2>
 
-<h4>Text alternative</h4>
+<h3>Text alternative</h3>
 
 <p>Text can be easily rendered in different formats (text on the screen, read by a screen reader), any other format should also have a text alternative.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&gt; All images should have <a href="http://webaim.org/techniques/alttext/">alt attributes</a>
@@ -112,7 +114,7 @@
 
 <p><br></p>
 
-<h4>Navigation</h4>
+<h3>Navigation</h3>
 
 <p>The site should be navigable using only a keyboard.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&gt; The <a href="http://webaim.org/techniques/semanticstructure/">document structure</a> should be <a href="http://webaim.org/techniques/tables/">well organized</a>
@@ -122,7 +124,7 @@
 
 <p><br></p>
 
-<h4>Appearance/Clarity</h4>
+<h3>Appearance/Clarity</h3>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&gt; Fonts should be clear, text size should not be too small
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&gt; Color alone should not be alone to convey meaning
@@ -130,7 +132,7 @@
 
 <p><br><br></p>
 
-<h2>###What is accessibility testing and how is it done?</h2>
+<h2>##What is accessibility testing and how is it done?</h2>
 
 <p>Accessibility testing means checking the website meets accessibility criteria.  It can include:
 <br>&nbsp;&nbsp;&nbsp;&nbsp;&gt; deciding on your accessibility goals during the design stage
@@ -157,8 +159,8 @@
 </div>
 
 </div><!--  end content block CONTAINER -->
-<div class="row navbar-fixed-bottom">
-  <div class="col-sm-8 col-sm-offset-2 footer">
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
 <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
 </div>
 </div>
