@@ -1,5 +1,5 @@
 """
-title: What is public - private key encryption?
+title: What is public private key encryption?
 date: 2018-07-22 14:00:00
 published: true
 type: post
