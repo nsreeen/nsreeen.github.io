@@ -5,7 +5,8 @@ published: true
 type: post
 """
 
-I made a toy calculator language, interpreted it in Python, and made a REPL to interact with it.
+
+I made a toy calculator language, interpreted it in Python, and made a REPL to interact with it!
 
 So far, the language I made can:
 
