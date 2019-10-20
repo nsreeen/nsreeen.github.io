@@ -1,6 +1,8 @@
 import markdown2
 import os
 import re
+from index_row import get_index_row
+import datetime
 
 def replace_ticks_for_code(matchobj):
     return '<code>' + matchobj.group(0)[1:-1] + '</code>'
@@ -48,7 +50,10 @@ def get_template(template):
     return file_contents
 
 def get_page_list_unit(post):
-    html = "<li><a href=" + post['url'] + ">" + post['title'] + "</li>"
+    date = datetime.datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
+    formatted_date = date.strftime("%b %Y")
+    #html = "<li><a href=" + post['url'] + ">" + post['title'] + post['date'] + "</li>"
+    html = get_index_row(post['url'], post['title'], formatted_date)
     return html
 
 def make_post_list_page():

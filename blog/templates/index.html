@@ -4,7 +4,8 @@
 <ul class="page-list">
   {% for page in pages %}
     <li><a href="{{ url_for('page', path=page.path) }}">
-      {{ page.meta.title }}
+      <h3>{{ page.meta.title }}</h3>
+      <i>page.meta.date</i>
     </li>
     <!-- </a> -  {{ page.meta.date }} -->
   {% endfor %}

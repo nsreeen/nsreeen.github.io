@@ -12,7 +12,7 @@
       margin-top: 30px;
       color: #333333 !important;
       font-family: 'Nunito', sans-serif;
-      font-size: 2em !important;
+      font-size: 1.8em !important;
       line-height: 1.5;
     }
 
@@ -26,9 +26,23 @@
       margin-bottom: 10px;
     }
     h1 {
-      padding-top: 10px;
+      padding-top: 15px;
       padding-bottom: 10px;
       border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
     }
 
     table {
@@ -43,6 +57,7 @@
     .page-list > li {
       list-style: none;
       text-decoration: none;
+      margin-bottom: 22px;
     }
     .page-list {
       padding: 0;
@@ -52,9 +67,6 @@
     }*/
     header {
       border-bottom: 1px solid grey;
-    }
-    li {
-      margin-bottom: 15px;
     }
     img {
       max-width: 50%;
@@ -125,18 +137,18 @@ I've been thinking about what makes code more or less easy to navigate and under
 <br>
 The stack is implemented as a Python list.  Instead of a separate top-of-stack pointer, Pyforth utilizes Python's list features by using <code>stack[-1]</code> to get the top-of-stack.</p>
 
-<pre><code>stack = []
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
 
 <p><br>
 The stack could have been an object with PUSH and POP methods; I did it this way for the neatness of writing <code>PUSH()</code> rather than <code>stack.PUSH()</code></p>
 
-<pre><code>def PUSH(item):
-    stack.append(item)
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">PUSH</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
-def POP():
-    return stack.pop()
-</code></pre>
+<span class="k">def</span> <span class="nf">POP</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</code></pre></div>
 
 <p><br></p>
 
@@ -146,14 +158,14 @@ def POP():
 <br>
 The return stack is implemented the same way as the parameter stack.</p>
 
-<pre><code>Rstack = []
+<div class="codehilite"><pre><span></span><code><span class="n">Rstack</span> <span class="o">=</span> <span class="p">[]</span>
 
-def RPUSH(item):
-    Rstack.append(item)
+<span class="k">def</span> <span class="nf">RPUSH</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+    <span class="n">Rstack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
 
-def RPOP():
-    return Rstack.pop()
-</code></pre>
+<span class="k">def</span> <span class="nf">RPOP</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">Rstack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</code></pre></div>
 
 <p><br></p>
 
@@ -164,8 +176,8 @@ def RPOP():
 
 <p>Pyforth uses a Python list for the dictionary:</p>
 
-<pre><code>dictionary = []
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">dictionary</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
 
 <p><br>
 The big difference in how we interact with a Forth dictionary structure compared to a Python list is that we can't access a Python list item by it's memory address.  We can access list items by index though, and Pyforth uses dictionary indexes as a stand in for memory addresses.
@@ -181,14 +193,13 @@ The big difference in how we interact with a Forth dictionary structure compared
 In Pyforth each word has a word header, which is an instance of the <code>WordHeader</code>
 class.  Each word header is one item in the dictionary, and it might have a parameter field.  The parameter field can be several items long.</p>
 
-<pre><code>class WordHeader():
-    def __init__(self, name, link_address, code_pointer, immediate_flag=0):
-        self.name = name
-        self.immediate_flag = immediate_flag
-        self.link_address = link_address
-        self.code_pointer = code_pointer
-
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">WordHeader</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">link_address</span><span class="p">,</span> <span class="n">code_pointer</span><span class="p">,</span> <span class="n">immediate_flag</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">immediate_flag</span> <span class="o">=</span> <span class="n">immediate_flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_address</span> <span class="o">=</span> <span class="n">link_address</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code_pointer</span> <span class="o">=</span> <span class="n">code_pointer</span>
+</code></pre></div>
 
 <p><br></p>
 
@@ -201,10 +212,9 @@ Usually a word called <code>HERE</code>, keeps track of the end of the dictionar
 
 <p>So instead we have a function that pushes that index to the stack:</p>
 
-<pre><code>def HERE():
-    PUSH(len(dictionary) - 1)
-
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">HERE</span><span class="p">():</span>
+    <span class="n">PUSH</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
 
 <p><br>
 <code>LATEST</code> stores the index of the last word added to the dictionary.
@@ -217,27 +227,27 @@ the dictionary has a linked list which starts at the last word added, and leaps 
 <br>
 Each of these pointers will store the index of a word header in the dictionary.  They are all initialized to <code>None</code>:</p>
 
-<pre><code>LATEST = None
-PC = None
-W = None
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">LATEST</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">PC</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">W</span> <span class="o">=</span> <span class="bp">None</span>
+</code></pre></div>
 
 <p><br>
 To make the rest of the code cleaner, I use dedicated functions to change these pointers:</p>
 
-<pre><code>def incrementLATEST():
-    global LATEST
-    HERE()
-    LATEST = POP()
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">incrementLATEST</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">LATEST</span>
+    <span class="n">HERE</span><span class="p">()</span>
+    <span class="n">LATEST</span> <span class="o">=</span> <span class="n">POP</span><span class="p">()</span>
 
-def update_PC(new_PC):
-    global PC
-    PC = new_PC
+<span class="k">def</span> <span class="nf">update_PC</span><span class="p">(</span><span class="n">new_PC</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">PC</span>
+    <span class="n">PC</span> <span class="o">=</span> <span class="n">new_PC</span>
 
-def update_W(new_W):
-    global W
-    W = new_W
-</code></pre>
+<span class="k">def</span> <span class="nf">update_W</span><span class="p">(</span><span class="n">new_W</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">W</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">new_W</span>
+</code></pre></div>
 
 <p><br></p>
 
@@ -245,8 +255,8 @@ def update_W(new_W):
 
 <p>The input stream stores the input:</p>
 
-<pre><code>input_stream = ""
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="n">input_stream</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</code></pre></div>
 
 <p><br>
 Traditional Forth interpreters parse input in the following steps:
@@ -257,18 +267,18 @@ After implementing a mostly traditional version, I decided in a later iteration 
 <br>
 My <code>ACCEPT</code> splits the input stream at whitespace into a list of words.</p>
 
-<pre><code>def ACCEPT():
-    global input_stream
-    input_stream = input_stream.split()
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">ACCEPT</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">input_stream</span>
+    <span class="n">input_stream</span> <span class="o">=</span> <span class="n">input_stream</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</code></pre></div>
 
 <p><code>WORD</code> removes the first word in the list and puts it onto the stack.</p>
 
-<pre><code>def WORD():
-    global input_stream
-    PUSH(input_stream[0])
-    input_stream = input_stream[1:]
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">WORD</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">input_stream</span>
+    <span class="n">PUSH</span><span class="p">(</span><span class="n">input_stream</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">input_stream</span> <span class="o">=</span> <span class="n">input_stream</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre></div>
 
 <p><br><br><br></p>
 </div>
