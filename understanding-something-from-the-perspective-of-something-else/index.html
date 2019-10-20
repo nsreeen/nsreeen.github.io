@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nasreen's blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <style>
+    body {
+      margin-top: 30px;
+      color: #333333 !important;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8em !important;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #006060;
+      text-decoration: none;
+     }
+    home-link {
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+    h1 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
+    }
+
+    table {
+      border-spacing: 30px 0;
+      border-collapse: separate;
+    }
+
+    td {
+      padding: 10px 0;
+    }
+
+    .page-list > li {
+      list-style: none;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
+      border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 1px solid grey;
+    }
+    img {
+      max-width: 50%;
+    }
+    .container {
+      /*min-height: 100%;*/
+      height: 100%;
+      /*position: relative;*/
+    }
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
+      padding-top: 20px;
+      padding-bottom: 10px;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em !important;;
+    }
+
+  </style>
+  </head>
+  <body>
+
+  <div class="container-fluid">
+
+  <div class="content" role="main">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-2 header">
+      <a class="home-link" href="/">All posts</a>
+
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+<h1>Understanding something from the perspective of something else</h1><p>Kotlin's extension functions are pretty cool.  I used them at work recently, for something that I think exemplifies why they are so powerful and is an example of a good time to use them.</p>
+
+<hr />
+
+<h3>The context</h3>
+
+<p>I was working in a monolithic codebase, and needed to call several methods on a class that was owned by another team.  </p>
+
+<p>An analogy is that I needed to call methods on a class representing a <code>Freezer</code> to decide if I should offer customers the option to buy ice cream.  </p>
+
+<p>In the (view presenter) class my team owned I wanted to do something like:</p>
+
+<pre><code>if (freezer.isIcecreamAvailable()) {
+  showIceCreamOptions()
+} else {
+  hideIceCreamOptions()
+}
+</code></pre>
+
+<p>I needed to call several already existing methods on <code>Freezer</code> to know if ice cream was available.</p>
+
+<pre><code>class FreezerService {
+
+  fun getTemperature(): FreezerTemperature
+
+  fun isInStock(item: Item): Boolean
+
+  // other methods
+
+}
+</code></pre>
+
+<hr />
+
+<h3>The problem</h3>
+
+<p>I wanted a method like:</p>
+
+<pre><code>fun isIceCreamAvailable(freezer: Freezer): Boolean {
+  return freezer.isInStock(Item.ICE_CREAM) &amp;&amp;
+         freezer.getTemperature() == FreezerTemperature.VALID
+}
+
+</code></pre>
+
+<p>I thought about adding to the <code>Freezer</code> class but it was already over bloated, shared by lots of teams, and only my team was interested in selling ice cream.  </p>
+
+<p>I wanted this method to allow me to understand the <code>Freezer</code> from the perspective of selling ice cream.  But I didn't want to add it to my class as it shouldn't know about the details of the <code>Freezer</code>.</p>
+
+<p>I thought about adding a new class, but it would basically be an adapter for the <code>Freezer</code>, and didn't make sense when the other option was to add extension functions.</p>
+
+<hr />
+
+<h3>The solution</h3>
+
+<p>I added some extension functions for the <code>Freezer</code>:</p>
+
+<pre><code>fun Freezer.isIceCreamAvailable(): Boolean {
+  return freezer.isInStock(Item.ICE_CREAM) &amp;&amp;
+         freezer.getTemperature() == FreezerTemperature.VALID
+}
+</code></pre>
+
+<p>Which I can call like any other method of the <code>Freezer</code> class:</p>
+
+<pre><code>freezer.isIceCreamAvailable()
+</code></pre>
+
+<hr />
+
+<p><br></p>
+
+<p>Although I think it would be easy to overuse extension functions, there are a few reasons I think this is appropriate usage:
+<br> - They are not changing any state, only checking conditions
+<br> - The extension functions depend on the state of the <code>Freezer</code> only + allow us to understand it's state</p>
+
+<p><br></p>
+
+<p>When I told my friend Federico what I was doing, he said "ah, you're understanding the freezer from the perspective of the ice cream seller".  I really like this way of phrasing it - thanks Federico for this blog title!</p>
+</div>
+</div>
+
+</div><!--  end content block CONTAINER -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
+</body>
+</html>
