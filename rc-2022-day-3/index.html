@@ -107,7 +107,30 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <hr>
-<ul class="page-list"><li><a href='rc-2022-day-3'><h4>RC 2022 Day 3</h4><h5>Aug 2022</h5></a></li><li><a href='rc-2022-day-2'><h4>RC 2022 Day 2</h4><h5>Aug 2022</h5></a></li><li><a href='rc-2022-day-1'><h4>RC 2022 Day 1</h4><h5>Aug 2022</h5></a></li><li><a href='validating-emails'><h4>Validating Emails</h4><h5>Aug 2021</h5></a></li><li><a href='understanding-something-from-the-perspective-of-something-else'><h4>Understanding something from the perspective of something else</h4><h5>Oct 2019</h5></a></li><li><a href='exploring-git-objects'><h4>Exploring git objects</h4><h5>Sep 2018</h5></a></li><li><a href='what-is-public-private-key-encryption'><h4>What is public private key encryption?</h4><h5>Jul 2018</h5></a></li><li><a href='forth-implemented-in-python---an-experiment-with-literate-programming'><h4>Forth implemented in Python - An experiment with literate programming</h4><h5>Aug 2017</h5></a></li><li><a href='regex-and-finite-state-machines'><h4>Regex and finite state machines</h4><h5>Aug 2017</h5></a></li><li><a href='how-do-you-navigate-a-large-unknown-codebase'><h4>How do you navigate a large unknown codebase?</h4><h5>Jul 2017</h5></a></li><li><a href='calculator-interpreter'><h4>Calculator Interpreter</h4><h5>Jul 2017</h5></a></li><li><a href='the-week-of-pairing'><h4>The week of pairing</h4><h5>Apr 2017</h5></a></li><li><a href='web-accessibility-and-web-accessibility-testing'><h4>Web accessibility and web accessibility testing</h4><h5>Mar 2017</h5></a></li><li><a href='how-accessible-is-this-blog'><h4>How accessible is this blog?</h4><h5>Mar 2017</h5></a></li><li><a href='three-weeks-at-rc---some-reflections'><h4>Three weeks at RC - some reflections</h4><h5>Mar 2017</h5></a></li><li><a href='mutable-default-parameters-in-python'><h4>Mutable Default Parameters in Python</h4><h5>Mar 2017</h5></a></li></ul></div>
+<h1>RC 2022 Day 3</h1><p>I wrote part of a shell in Python today, with the <code>os</code> library to make system calls.  I'm using a couple of really <a href="https://github.com/tokenrove/build-your-own-shell">nice</a> <a href="https://github.com/kamalmarhubi/shell-workshop">tutorials</a> as well as the shell source <a href="https://github.com/bminor/bash">code</a> (with the help of this <a href="https://www.aosabook.org/en/bash.html">summary</a>).</p>
+
+<p>My shell accepts input and forks to create a child process.  It doesn't actually execute commands successfully yet, I might continue working on that another day!</p>
+
+<p>One thing I found interesting was how <code>fork</code> works.  When <code>fork</code> is called, the current process is cloned, and both those processes continue stepping through the code.  The way to tell the two processes apart is by the return value of <code>fork</code>: in the child process it returns 0, while in the parent process it returns the child's process id.</p>
+
+<p>For example:</p>
+
+<pre><code>import os
+fork_return_value = os.fork()
+print(f"\n fork return value: {fork_return_value} current process id: {os.getpid()}")
+</code></pre>
+
+<p>Results in the following being printed:</p>
+
+<pre><code> fork return value: 37625 current process id: 37615
+
+ fork return value: 0 current process id: 37625
+</code></pre>
+
+<p>The first line is printed from the parents process, the second line is printed from the child process.  This is useful because it means that in the parent process, we can wait for the child process to finish as we have its id.  </p>
+
+<p>I also met a few more people today and had some great chats :)</p>
+</div>
 </div>
 
 </div><!--  end content block CONTAINER -->
