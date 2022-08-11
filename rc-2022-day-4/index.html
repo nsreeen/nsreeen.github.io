@@ -107,7 +107,18 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <hr>
-<ul class="page-list"><li><a href='rc-2022-day-4'><h4>RC 2022 Day 4</h4><h5>Aug 2022</h5></a></li><li><a href='rc-2022-day-3'><h4>RC 2022 Day 3</h4><h5>Aug 2022</h5></a></li><li><a href='rc-2022-day-2'><h4>RC 2022 Day 2</h4><h5>Aug 2022</h5></a></li><li><a href='rc-2022-day-1'><h4>RC 2022 Day 1</h4><h5>Aug 2022</h5></a></li><li><a href='validating-emails'><h4>Validating Emails</h4><h5>Aug 2021</h5></a></li><li><a href='understanding-something-from-the-perspective-of-something-else'><h4>Understanding something from the perspective of something else</h4><h5>Oct 2019</h5></a></li><li><a href='exploring-git-objects'><h4>Exploring git objects</h4><h5>Sep 2018</h5></a></li><li><a href='what-is-public-private-key-encryption'><h4>What is public private key encryption?</h4><h5>Jul 2018</h5></a></li><li><a href='forth-implemented-in-python---an-experiment-with-literate-programming'><h4>Forth implemented in Python - An experiment with literate programming</h4><h5>Aug 2017</h5></a></li><li><a href='regex-and-finite-state-machines'><h4>Regex and finite state machines</h4><h5>Aug 2017</h5></a></li><li><a href='how-do-you-navigate-a-large-unknown-codebase'><h4>How do you navigate a large unknown codebase?</h4><h5>Jul 2017</h5></a></li><li><a href='calculator-interpreter'><h4>Calculator Interpreter</h4><h5>Jul 2017</h5></a></li><li><a href='the-week-of-pairing'><h4>The week of pairing</h4><h5>Apr 2017</h5></a></li><li><a href='web-accessibility-and-web-accessibility-testing'><h4>Web accessibility and web accessibility testing</h4><h5>Mar 2017</h5></a></li><li><a href='how-accessible-is-this-blog'><h4>How accessible is this blog?</h4><h5>Mar 2017</h5></a></li><li><a href='three-weeks-at-rc---some-reflections'><h4>Three weeks at RC - some reflections</h4><h5>Mar 2017</h5></a></li><li><a href='mutable-default-parameters-in-python'><h4>Mutable Default Parameters in Python</h4><h5>Mar 2017</h5></a></li></ul></div>
+<h1>RC 2022 Day 4</h1><p>Today I made a bit more progress on my shell!  I can now change directory, make other system calls, and run multiple commands (separated by <code>&amp;&amp;</code>).  </p>
+
+<p>I started working on implementing pipes (<code>|</code>) and learnt some cool stuff:</p>
+
+<ul>
+<li>file descriptors are unique IDs for open files in a process.  Each process has a table of file descriptors for currently open files and uses those IDs to operate on the files.  Shells use file descriptors 0, 1, and 2 for stdin, stdout, and stderr, respectively</li>
+<li>/proc is a virtual file system with a bunch of info about what's happening in the kernal THAT YOU CAN LOOK AT (eg <code>ls /proc</code>)</li>
+<li><code>ls -l /proc/self/fd</code> prints the file descriptors table in the current process</li>
+</ul>
+
+<p>Today I also got to meet a few more people and had some really interesting chats, paired with Sophia on some environment setup stuff, and attended a really excellent debugging workshop run by Julia.</p>
+</div>
 </div>
 
 </div><!--  end content block CONTAINER -->
