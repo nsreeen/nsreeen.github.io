@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nasreen's blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <style>
+    body {
+      margin-top: 30px;
+      color: #333333 !important;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8em !important;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #006060;
+      text-decoration: none;
+     }
+    home-link {
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+    h1 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
+    }
+
+    table {
+      border-spacing: 30px 0;
+      border-collapse: separate;
+    }
+
+    td {
+      padding: 10px 0;
+    }
+
+    .page-list > li {
+      list-style: none;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
+      border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 1px solid grey;
+    }
+    img {
+      max-width: 50%;
+    }
+    .container {
+      /*min-height: 100%;*/
+      height: 100%;
+      /*position: relative;*/
+    }
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
+      padding-top: 20px;
+      padding-bottom: 10px;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em !important;;
+    }
+
+  </style>
+  </head>
+  <body>
+
+  <div class="container-fluid">
+
+  <div class="content" role="main">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-2 header">
+      <a class="home-link" href="/">All posts</a>
+
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+<h1>RC 2022 Day 5</h1><p>Today I added pipes to my shell!  This is the functionality my shell supports:</p>
+
+<pre><code>/home/nasreen/projects/shell&gt;&gt; cd ..
+/home/nasreen/projects&gt;&gt; cd shell
+/home/nasreen/projects/shell&gt;&gt; echo hi &amp;&amp; echo bye
+hi
+bye
+/home/nasreen/projects/shell&gt;&gt; ls
+shell.py
+/home/nasreen/projects/shell&gt;&gt; ls | wc -l
+1
+</code></pre>
+
+<p>The code is <a href="https://gist.github.com/nsreeen/f55282c130c0be0e23367c4158f5f687">here</a>.</p>
+
+<p>I'm going to call this project done for now.  My goals when I started were to write
+a minimal functioning shell and learn a bit about how a shell interacts with the
+operating system, and I've done both of those!  I also had fun and learnt some cool
+linux things I wasn't expecting.  There are a bunch more things I'd like to add,
+but there are other things I'd like to do next week - maybe I'll come back
+to it (or maybe not)!</p>
+
+<p>Some things I learnt while doing this:</p>
+
+<ul>
+<li><p>a shell is basically just system calls + input processing (a full shell would
+also support a scripting language, but in a way that's just more advanced
+processing)</p></li>
+<li><p><code>cd</code> is a system call - it updates the working directory in the process
+the shell is running in (it's actually a piece of state associated with the process)</p></li>
+<li><p>all other system calls happen in a child process.  Parent and child processes
+can be distinguished by what <code>fork()</code> returns: 0 in the child process, and the child's
+PID in the parent process</p></li>
+<li><p>file descriptors are how processes keep track of open files (as well as input/output
+streams).  The kernal keeps track of full file information for all open files
+system wide - the process has to make a call to the kernal to get that</p></li>
+<li><p>the Python os module is pretty cool.  When I started this, I wasn't sure if I'd
+be able to get very far in Python, but it turns out that the os module supports all the
+system calls I would have made if I did this in C</p></li>
+<li><p><code>proc</code> is a virutal file system with lots of information about what's happening
+in the linux kernal</p></li>
+</ul>
+
+<p>Today I also participated in a discussion about how to facilitate more pair programming at
+RC which was really interesting.  And I attended presentations - really cool to
+see some of the projects people are working on.</p>
+
+<p>I've had a great first week of my batch - I got to meet lots of kind people and
+have lots of interesting conversations.  I'm really looking forward to the next
+11 weeks.</p>
+
+<p>Next week my goal is to pair program more.  I'll probably try and do smaller
+stand alone projects with other people, and I'll focus on planning and doing
+pairing sessions rather than having an ongoing project of my own.  </p>
+</div>
+</div>
+
+</div><!--  end content block CONTAINER -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
+</body>
+</html>
