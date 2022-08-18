@@ -107,15 +107,17 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <hr>
-<h1>RC 2022 Day 7</h1><p>I continued working on my calendar app today: now events can be added to the service, stored in a sqlite database, and added events are combined with the RC events to be rendered by the front end.  </p>
+<h1>RC 2022 Day 4 - pipes</h1><p>Today I made a bit more progress on my shell!  I can now change directory, make other system calls, and run multiple commands (separated by <code>&amp;&amp;</code>).  </p>
 
-<p>I pair programmed with Isaac for the first part of the day to add and store events which was a lot of fun!  We ended up having to deal with some config issues before we could make the changes we wanted to make.  I think I would have found that a bit demotivating if I'd been working alone, but instead I really enjoyed the time we spent working on it.</p>
+<p>I started working on implementing pipes (<code>|</code>) and learnt some cool stuff:</p>
 
-<p>Relatedly, I chose this project because I wanted to use it and I thought it would be a good project to pair program on (which is my main goal this week).  I have been pair programming on it, and I'm still hoping to be able to use it.  But I've been thinking that once I wrap this project up I want to do something that I am motivated to do for itself, not the result.</p>
+<ul>
+<li>file descriptors are unique IDs for open files in a process.  Each process has a table of file descriptors for currently open files and uses those IDs to operate on the files.  Shells use file descriptors 0, 1, and 2 for stdin, stdout, and stderr, respectively</li>
+<li>/proc is a virtual file system with a bunch of info about what's happening in the kernal THAT YOU CAN LOOK AT (eg <code>ls /proc</code>)</li>
+<li><code>ls -l /proc/self/fd</code> prints the file descriptors table in the current process</li>
+</ul>
 
-<p>I attended a really excellent workshop run by Rachel today which cemented that desire - it was about 'building volitional muscles'.  I got a lot clearer on why I want to do certain projects, which made it a lot easier to see which I'm most excited about and want to prioritise.</p>
-
-<p>I also got to have great chats with Jackson and Sophia about projects we're each working on.</p>
+<p>Today I also got to meet a few more people and had some really interesting chats, paired with Sophia on some environment setup stuff, and attended a really excellent debugging workshop run by Julia.</p>
 </div>
 </div>
 

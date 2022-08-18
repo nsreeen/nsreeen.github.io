@@ -107,29 +107,13 @@
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <hr>
-<h1>RC 2022 Day 3</h1><p>I wrote part of a shell in Python today, with the <code>os</code> library to make system calls.  I'm using a couple of really <a href="https://github.com/tokenrove/build-your-own-shell">nice</a> <a href="https://github.com/kamalmarhubi/shell-workshop">tutorials</a> as well as the shell source <a href="https://github.com/bminor/bash">code</a> (with the help of this <a href="https://www.aosabook.org/en/bash.html">summary</a>).</p>
+<h1>RC 2022 Day 6 - starting a calendar app and pair programming</h1><p>Today I started working on a small calendar app - it gets the events I'm subscribed to from the RC calendar API and displays them.  </p>
 
-<p>My shell accepts input and forks to create a child process.  It doesn't actually execute commands successfully yet, I might continue working on that another day!</p>
+<p>I had a chat with Julian early in the day about both of our projects - it was really interesting hearing about his, and it helped me plan out mine.</p>
 
-<p>One thing I found interesting was how <code>fork</code> works.  When <code>fork</code> is called, the current process is cloned, and both those processes continue stepping through the code.  The way to tell the two processes apart is by the return value of <code>fork</code>: in the child process it returns 0, while in the parent process it returns the child's process id.</p>
+<p>Later in the day I pair programmed with Angel - they helped me process the data being received and showed me how to apply a bunch of css styles (and make the html look really cool!).  It was very satisfying seeing the page transform and come together.</p>
 
-<p>For example:</p>
-
-<pre><code>import os
-fork_return_value = os.fork()
-print(f"\n fork return value: {fork_return_value} current process id: {os.getpid()}")
-</code></pre>
-
-<p>Results in the following being printed:</p>
-
-<pre><code> fork return value: 37625 current process id: 37615
-
- fork return value: 0 current process id: 37625
-</code></pre>
-
-<p>The first line is printed from the parents process, the second line is printed from the child process.  This is useful because it means that in the parent process, we can wait for the child process to finish as we have its id.  </p>
-
-<p>I also met a few more people today and had some great chats :)</p>
+<p>I used fastapi for the API - this is the first time I've used it and I found it indeed very fast to get set up.  I'm currently calling the API from a HTML page with embedded javascript, though I may change that at some point.  I'd ultimately like to be able to add additional calendar events and shade out the times I'm not online, so I can share the page with others.</p>
 </div>
 </div>
 
