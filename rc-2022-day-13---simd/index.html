@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nasreen's blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <style>
+    body {
+      margin-top: 30px;
+      color: #333333 !important;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8em !important;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #006060;
+      text-decoration: none;
+     }
+    home-link {
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+    h1 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
+    }
+
+    table {
+      border-spacing: 30px 0;
+      border-collapse: separate;
+    }
+
+    td {
+      padding: 10px 0;
+    }
+
+    .page-list > li {
+      list-style: none;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
+      border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 1px solid grey;
+    }
+    img {
+      max-width: 50%;
+    }
+    .container {
+      /*min-height: 100%;*/
+      height: 100%;
+      /*position: relative;*/
+    }
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
+      padding-top: 20px;
+      padding-bottom: 10px;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em !important;;
+    }
+
+  </style>
+  </head>
+  <body>
+
+  <div class="container-fluid">
+
+  <div class="content" role="main">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-2 header">
+      <a class="home-link" href="/">All posts</a>
+
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+<h1>RC 2022 Day 13 - SIMD</h1><p>Today I pair programmed with Isaac on understanding some C++ code from a library that he's calling via the library's Rust bindings.  The part we looked at was processing some data and applying a Fourier Transform to it.</p>
+
+<p>We came across some code that instructed the compiler to process it by Single Instruction Multiple Data (SIMD) parallelism.  This is the first time I've come across SIMD or such instructions to the compiler, and both concepts were a bit strange for me, so I decided to look into it a bit more!</p>
+
+<h2>Pragmas</h2>
+
+<p>A 'pragma' is a language construct that tells the compiler how to process input (the name comes from the same Greek word as 'pragmatic').  I find this interesting because in languages I'm familiar with, it's up to the compiler to decide how to execute a program.</p>
+
+<p>C++ has a <code>#pragma</code> directive which tells the compiler to use implementation dependent processor features if available.  Here's an example:</p>
+
+<pre><code>#pragma omp parallel for simd
+for (i=0, i&lt;x, i++)
+{
+ // code here can be executed in parallel
+}
+#pragma omp end parallel for simd
+</code></pre>
+
+<h2>SIMD</h2>
+
+<p>SIMD means that the same instruction is applied to multiple pieces of data simultaneously, and it's generally supported on modern CPUs.  It's used for operating on vector data efficiently, and so is used in GPUs - for example changing the brightness on a screen means adding the same value to large arrays of data representing pixels.  </p>
+
+<p>There are two processor types that are used to implement this:
+- array processors: these work at the same time in different spaces
+- vector processors: these work in consecutive time in different spaces, but they can also be stacked/ overlapped to speed things up</p>
+
+<p>What I found confusing about this initially is understanding why we would do this rather than applying multiple instructions simultaneously?  I think the answer is that SIMD is an efficient way to do operations on contiguous data without having to use full concurrency.  It's efficient on contiguous data because it's more efficient to load multiple adjacent items in the same vector simultaneously, rather than load them one by one.  </p>
+</div>
+</div>
+
+</div><!--  end content block CONTAINER -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
+</body>
+</html>
