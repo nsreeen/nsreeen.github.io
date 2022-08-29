@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nasreen's blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <style>
+    body {
+      margin-top: 30px;
+      color: #333333 !important;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8em !important;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #006060;
+      text-decoration: none;
+     }
+    home-link {
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+    h1 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
+    }
+
+    table {
+      border-spacing: 30px 0;
+      border-collapse: separate;
+    }
+
+    td {
+      padding: 10px 0;
+    }
+
+    .page-list > li {
+      list-style: none;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
+      border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 1px solid grey;
+    }
+    img {
+      max-width: 50%;
+    }
+    .container {
+      /*min-height: 100%;*/
+      height: 100%;
+      /*position: relative;*/
+    }
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
+      padding-top: 20px;
+      padding-bottom: 10px;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em !important;;
+    }
+
+  </style>
+  </head>
+  <body>
+
+  <div class="container-fluid">
+
+  <div class="content" role="main">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-2 header">
+      <a class="home-link" href="/">All posts</a>
+
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+<h1>RC 2022 Days 14 & 15 - Monoids</h1><h2>Reflections on the last couple of days</h2>
+
+<p>On Thursday and Friday I pair programmed with Isaac on his Rust project and studied some category theory.  Pair programming was really fun!  Rust seems like a really cool language and set up was surprisingly easy.  It's also just really fun to program in a new language with someone who already knows it.  </p>
+
+<p>Also, I decided to drop my one post a day commitment - from now on I'll combine posts when I'm working on the same things or I don't feel like writing.</p>
+
+<p><br></p>
+
+<h2>Monoids</h2>
+
+<p>One of the things I learnt about category theory is monoids.  Monoids are a special kind of category.  A category is a set of objects and transformations (called morphisms) that map between members of the set.  </p>
+
+<p>So, for example, natural numbers (1,2,3,...) with the morphism <code>+</code> is a category.  </p>
+
+<p><br></p>
+
+<p>A monoid is a category that meets special conditions:</p>
+
+<ul>
+<li><p>there has to be a binary operation transformation (ie. it takes two operands/ arguments) eg. <code>+</code></p></li>
+<li><p>there has to be an 'identity' transformation.  This means there has to be a value that can be combined with the binary operation and applied to every member of the set without changing it.  So in our example that would be <code>+ 0</code> eg. if we apply <code>+ 0</code> to 1, the result is 1 (1 is unchanged).</p></li>
+</ul>
+
+<p><br></p>
+
+<p>This pattern comes up a lot in programming.  Some examples:</p>
+
+<ul>
+<li><p>the set of <code>{True,False}</code>, the morphism <code>all</code>, and the identity value <code>True</code></p></li>
+<li><p><code>{True,False}</code>,  <code>any</code>, <code>False</code></p></li>
+<li><p>any set of strings,  <code>concat</code>, and <code>""</code></p></li>
+<li><p>any set of integers,  <code>MIN</code>, and <code>INFINITY</code></p></li>
+<li><p>reduce</p></li>
+</ul>
+</div>
+</div>
+
+</div><!--  end content block CONTAINER -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
+</body>
+</html>
