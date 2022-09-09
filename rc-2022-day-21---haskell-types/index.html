@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nasreen's blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <style>
+    body {
+      margin-top: 30px;
+      color: #333333 !important;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8em !important;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #006060;
+      text-decoration: none;
+     }
+    home-link {
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+    h1 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
+    }
+
+    table {
+      border-spacing: 30px 0;
+      border-collapse: separate;
+    }
+
+    td {
+      padding: 10px 0;
+    }
+
+    .page-list > li {
+      list-style: none;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
+      border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 1px solid grey;
+    }
+    img {
+      max-width: 50%;
+    }
+    .container {
+      /*min-height: 100%;*/
+      height: 100%;
+      /*position: relative;*/
+    }
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
+      padding-top: 20px;
+      padding-bottom: 10px;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em !important;;
+    }
+
+  </style>
+  </head>
+  <body>
+
+  <div class="container-fluid">
+
+  <div class="content" role="main">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-2 header">
+      <a class="home-link" href="/">All posts</a>
+
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+<h1>RC 2022 Day 21 - Haskell types</h1><p>Today I was reviewing the difference between types and typeclasses in Haskell.</p>
+
+<h2>The <code>data</code> keyword</h2>
+
+<p>The data keyword makes a new type.  </p>
+
+<p>This could be like a struct, with multiple named fields:</p>
+
+<pre><code>data Card = Card  { suit :: Suit,
+                    value :: Value }
+                  deriving (Eq, Show)
+</code></pre>
+
+<p>It could have one field:</p>
+
+<pre><code>data Thing a = This a | That a deriving Show
+</code></pre>
+
+<p>Or it might not have any fields (like an enum):</p>
+
+<pre><code>data Suit = Clubs | Diamonds | Hearts | Spades
+            deriving (Eq, Show)
+
+data Value = Ace | Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King
+             deriving (Eq, Ord, Show)
+</code></pre>
+
+<h2>The <code>type</code> keyword</h2>
+
+<p>The type keyword makes a type synonym: it let's you give an existing type a new name:</p>
+
+<pre><code>type Deck = [Card]
+</code></pre>
+
+<p>This is cheaper than making a new type, as the compiler doesn't have to make a new type - it just let's you call an old one by a new name.</p>
+
+<h2>The <code>class</code> keyword</h2>
+
+<p>The class keyword makes a new typeclass.  Typeclasses describe <em>behaviour</em> in Haskell.</p>
+
+<p>Eq, Ord, Show are all type classes:</p>
+
+<pre><code>- Members of Eq can be compared with the == function
+
+- Members of Ord can be compared with &lt;,&gt;,&gt;=, etc
+
+- Members of show can be rendered (show converts to a string, which can then be printed)
+</code></pre>
+
+<p>In the examples above we can 'derive' Eq and Show because the compiler can check if the values are the same and convert them to a string.  With the Value type we also derived Ord - the compiler orders them in the order they are declared.</p>
+
+<p>Typeclasses are like interfaces in object oriented programming.  They contain function declarations that must be implemented to conform to the interface.</p>
+
+<p>To implement Ord we can just implement compare and the compiler can deduce the other functions needed.  Here's an example:</p>
+
+<pre><code>data Play = Rock | Paper | Scissors
+            deriving (Show, Eq)
+
+instance Ord Play where
+    compare Paper Rock = GT
+    compare Rock Scissors = GT
+    compare Scissors Paper = GT
+    compare _ _ = LT
+</code></pre>
+</div>
+</div>
+
+</div><!--  end content block CONTAINER -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
+</body>
+</html>

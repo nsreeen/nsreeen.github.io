@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nasreen's blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <style>
+    body {
+      margin-top: 30px;
+      color: #333333 !important;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.8em !important;
+      line-height: 1.5;
+    }
+
+    a {
+      color: #006060;
+      text-decoration: none;
+     }
+    home-link {
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+    h1 {
+      padding-top: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid grey;
+    }
+
+    h2 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      padding-top: 10px;
+      padding-bottom: 5px;
+    }
+
+    h5 {
+      font-size: : 6px;
+    }
+
+    table {
+      border-spacing: 30px 0;
+      border-collapse: separate;
+    }
+
+    td {
+      padding: 10px 0;
+    }
+
+    .page-list > li {
+      list-style: none;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+    .page-list {
+      padding: 0;
+    }
+    /*hr {
+      border: 1px solid grey;
+    }*/
+    header {
+      border-bottom: 1px solid grey;
+    }
+    img {
+      max-width: 50%;
+    }
+    .container {
+      /*min-height: 100%;*/
+      height: 100%;
+      /*position: relative;*/
+    }
+    .footer-content {
+      /*top: -30px;*/
+      /*position: fixed;*/
+      padding-top: 20px;
+      padding-bottom: 10px;
+      margin-top: 50px;
+      margin-bottom: 10px;
+      border-top: 1px solid grey;
+      font: 1.5em !important;;
+    }
+
+  </style>
+  </head>
+  <body>
+
+  <div class="container-fluid">
+
+  <div class="content" role="main">
+
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-2 header">
+      <a class="home-link" href="/">All posts</a>
+
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <hr>
+<h1>RC 2022 Day 22 - ownership in Rust</h1><p>Last week I wrote a game of life in Rust with Tyler, and today we tidied it up a bit.  I found the concept of ownership a bit tricky so I wanted to write about it here.</p>
+
+<h2>why does Rust have ownership?</h2>
+
+<p>Rust's strict ownership system means that it has memory safety and thread safety.  It also does that without a garbage collector, which means less computational cost.</p>
+
+<h2>what is ownership in Rust?</h2>
+
+<p>Variable bindings have ownership of the value that is bound to them.  When the binding goes out of scope, the memory used to store the value is deallocated:</p>
+
+<pre><code>fn main() {
+    let x = "hello";
+} // x goes out of scope here and the memory is deallocated
+</code></pre>
+
+<p>In Rust there can only be one binding to a value at one time:</p>
+
+<pre><code>fn main() {
+    let x = "hello";
+    let y = x; // x goes out of scope here because ownership of the value was moved to y
+}
+</code></pre>
+
+<h2>stack vs heap</h2>
+
+<p>Values that live on the heap (eg. strings and collections) are expensive to copy.  So by default Rust doesn't copy them unless we explicitly call <code>clone()</code>.  That's why in the example above the value gets moved to a different binding rather than copied.  </p>
+
+<p>Values that live on the stack (scalar values - integers, floats, booleans, and characters) are cheap to copy.  So instead of transferring ownership, the compiler just makes a copy:</p>
+
+<pre><code>fn main() {
+    let x = 1;
+    let y = x; // x and y are both in scope now - there are two value on the stack
+}
+</code></pre>
+
+<h2>how can we pass values between functions?</h2>
+
+<p>We could clone values every time we want to pass them, but that would use a lot of memory.  Instead we a can pass references to the value - that allows us to keep the value in scope and allow the value to be <em>read</em> elsewhere.  A caveat is that the reference only lives as long as the value - so once the value goes out of scope the reference can no longer be used.</p>
+
+<p>We can also pass a mutable reference, which allows the value to be written to elsewhere.  While there's a mutable reference in scope, no other reference can be passed.  </p>
+
+<p>I wrote examples of some of these <a href="https://gist.github.com/nsreeen/ed52557c47ddb87a2c04b8bd96d7b791">here</a>.</p>
+</div>
+</div>
+
+</div><!--  end content block CONTAINER -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 footer-content">
+<script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+</div>
+</div>
+</body>
+</html>
