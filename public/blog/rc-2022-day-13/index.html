@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 Day 13 - SIMD
+</h1>
+<p class="subtitle"><strong>2022-08-24</strong></p>
+<p>Today I pair programmed with Isaac on understanding some C++ code from a library that he's calling via the library's Rust bindings.  The part we looked at was processing some data and applying a Fourier Transform to it.</p>
+<p>We came across some code that instructed the compiler to process it by Single Instruction Multiple Data (SIMD) parallelism.  This is the first time I've come across SIMD or such instructions to the compiler, and both concepts were a bit strange for me, so I decided to look into it a bit more!</p>
+<h2 id="pragmas">Pragmas</h2>
+<p>A 'pragma' is a language construct that tells the compiler how to process input (the name comes from the same Greek word as 'pragmatic').  I find this interesting because in languages I'm familiar with, it's up to the compiler to decide how to execute a program.</p>
+<p>C++ has a <code>#pragma</code> directive which tells the compiler to use implementation dependent processor features if available.  Here's an example:</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#c0c5ce;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#b48ead;">#pragma</span><span> omp parallel for simd
+</span><span style="color:#b48ead;">for </span><span>(i=</span><span style="color:#d08770;">0</span><span>, i&lt;x, i++)
+</span><span>{
+</span><span> </span><span style="color:#65737e;">// code here can be executed in parallel
+</span><span>}
+</span><span style="color:#b48ead;">#pragma</span><span> omp end parallel for simd
+</span></code></pre>
+<h2 id="simd">SIMD</h2>
+<p>SIMD means that the same instruction is applied to multiple pieces of data simultaneously, and it's generally supported on modern CPUs.  It's used for operating on vector data efficiently, and so is used in GPUs - for example changing the brightness on a screen means adding the same value to large arrays of data representing pixels.</p>
+<p>There are two processor types that are used to implement this:</p>
+<ul>
+<li>array processors: these work at the same time in different spaces</li>
+<li>vector processors: these work in consecutive time in different spaces, but they can also be stacked/ overlapped to speed things up</li>
+</ul>
+<p>What I found confusing about this initially is understanding why we would do this rather than applying multiple instructions simultaneously?  I think the answer is that SIMD is an efficient way to do operations on contiguous data without having to use full concurrency.  It's efficient on contiguous data because it's more efficient to load multiple adjacent items in the same vector simultaneously, rather than load them one by one.</p>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>

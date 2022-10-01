@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 Day 5 - wrapping up my shell and next week&#x27;s goal
+</h1>
+<p class="subtitle"><strong>2022-08-12</strong></p>
+<p>Today I added pipes to my shell!  This is the functionality my shell supports:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>/home/nasreen/projects/shell&gt;&gt; cd ..
+</span><span>/home/nasreen/projects&gt;&gt; cd shell
+</span><span>/home/nasreen/projects/shell&gt;&gt; echo hi &amp;&amp; echo bye
+</span><span>hi
+</span><span>bye
+</span><span>/home/nasreen/projects/shell&gt;&gt; ls
+</span><span>shell.py
+</span><span>/home/nasreen/projects/shell&gt;&gt; ls | wc -l
+</span><span>1
+</span></code></pre>
+<p>The code is <a href="https://gist.github.com/nsreeen/f55282c130c0be0e23367c4158f5f687">here</a>.</p>
+<p>I'm going to call this project done for now.  My goals when I started were to write
+a minimal functioning shell and learn a bit about how a shell interacts with the
+operating system, and I've done both of those!  I also had fun and learnt some cool
+linux things I wasn't expecting.  There are a bunch more things I'd like to add,
+but there are other things I'd like to do next week - maybe I'll come back
+to it (or maybe not)!</p>
+<p>Some things I learnt while doing this:</p>
+<ul>
+<li>
+<p>a shell is basically just system calls + input processing (a full shell would
+also support a scripting language, but in a way that's just more advanced
+processing)</p>
+</li>
+<li>
+<p><code>cd</code> is a system call - it updates the working directory in the process
+the shell is running in (it's actually a piece of state associated with the process)</p>
+</li>
+<li>
+<p>all other system calls happen in a child process.  Parent and child processes
+can be distinguished by what <code>fork()</code> returns: 0 in the child process, and the child's
+PID in the parent process</p>
+</li>
+<li>
+<p>file descriptors are how processes keep track of open files (as well as input/output
+streams).  The kernal keeps track of full file information for all open files
+system wide - the process has to make a call to the kernal to get that</p>
+</li>
+<li>
+<p>the Python os module is pretty cool.  When I started this, I wasn't sure if I'd
+be able to get very far in Python, but it turns out that the os module supports all the
+system calls I would have made if I did this in C</p>
+</li>
+<li>
+<p><code>proc</code> is a virutal file system with lots of information about what's happening
+in the linux kernal</p>
+</li>
+</ul>
+<p>Today I also participated in a discussion about how to facilitate more pair programming at
+RC which was really interesting.  And I attended presentations - really cool to
+see some of the projects people are working on.</p>
+<p>I've had a great first week of my batch - I got to meet lots of kind people and
+have lots of interesting conversations.  I'm really looking forward to the next
+11 weeks.</p>
+<p>Next week my goal is to pair program more.  I'll probably try and do smaller
+stand alone projects with other people, and I'll focus on planning and doing
+pairing sessions rather than having an ongoing project of my own.</p>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>
