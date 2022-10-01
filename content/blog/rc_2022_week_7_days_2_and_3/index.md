@@ -34,3 +34,14 @@ I'm not sure where I'll go next with this project, here are some of the things I
 - How much do I want to tune vs have the sounds be raw representations of the image?  Do I even want to try to make this sound good?
 
 - What other aspects of the sounds could I change to improve or alter the sounds?  I don't know much about sound or music theory, so this is pretty open ended
+
+-----
+## update 2022-09-30:
+
+I experimented a bit with different amplitudes and phrase length & repetition.  I think this sounds a bit more interesting:
+
+<audio controls src="v3.mp3" alt="This sounds like a modem struggling to connect to the internet."></audio>
+
+<audio controls src="v4.mp3" alt="This sounds like angry bots in a low budget sci fi movie."></audio>
+
+The code is [here](https://github.com/nsreeen/image2sound).
