@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  List of blog posts
+</h1>
+<ul>
+  <!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-week-9-day-5/">RC 2022: week 9 day 5 - foldl vs foldr vs foldl&#x27;</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-week-9-day-3/">RC 2022: week 9 day 3 - making HTTP requests in Haskell</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-week-8-day-5/">RC 2022 week 8 day 5 - footer css trick</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-week-8-day-4/">RC 2022 week 8 day 4 - clojure loop and recur</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-week-8-days-2-and-3/">RC 2022 week 8 days 2 &amp; 3 - images to sound</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-weeks-6-and-7/">RC 2022 weeks 6 &amp; 7 - p5js sketches and calendar app</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-days-23-and-24/">RC 2022 Days 23 and 24 - Functors and Monads</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-22/">RC 2022 Day 22 - ownership in Rust</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-21/">RC 2022 Day 21 - Haskell types</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-16/">RC 2022 Days 14 &amp; 15 - Monoids</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-days-14-and-15/">RC 2022 Days 14 &amp; 15 - Monoids</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-13/">RC 2022 Day 13 - SIMD</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-12/">RC 2022 Day 12 - Javascript&#x27;s Date</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-11/">RC 2022 Day 11 - Kotlin &amp; start of week 3</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-10/">RC 2022 Day 10 - scene DSL</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-9/">RC 2022 Day 9 - Toki Pona, abstractions, and Forth</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-8/">RC 2022 Day 8 - Toki Pona and thoughts on blogging</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-7/">RC 2022 Day 7 - a few thoughts</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-6/">RC 2022 Day 6 - starting a calendar app and pair programming</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-5/">RC 2022 Day 5 - wrapping up my shell and next week&#x27;s goal</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-4/">RC 2022 Day 4 - pipes</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-3/">RC 2022 Day 3 - forks</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-2/">RC 2022 Day 2 - shells</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/rc-2022-day-1/">RC 2022 Day 1 - I&#x27;m doing another batch at the Recurse Center!</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/validating-email-addresses/">Validating Emails</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/kotlin-extensions-perspective/">Understanding something from the perspective of something else</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/exploring-git-objects/">Exploring git objects</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/encryption/">What is public private key encryption?</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/literate-programming-pyforth-p1/">Forth implemented in Python - An experiment with literate programming</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/regex-fsm/">Regex and finite state machines</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/calculator-interpreter/">Calculator Interpreter</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/navigating-codebases/">How do you navigate a large unknown codebase?</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/week-of-pairing-6-weeks-at-rc/">The week of pairing</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/how-accessible-is-this-blog/">How accessible is this blog?</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/web-accessibility-and-web-accessibility-testing/">Web accessibility and web accessibility testing</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/three-weeks-at-rc-some-reflections/">Three weeks at RC - some reflections</a></li>
+  
+  <li class="page-list-item"><a href="https://nsreeen.github.io/blog/mutable-default-parameters/">Mutable Default Parameters in Python</a></li>
+  
+</ul>
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>

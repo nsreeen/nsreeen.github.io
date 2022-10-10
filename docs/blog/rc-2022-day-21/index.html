@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 Day 21 - Haskell types
+</h1>
+<p class="subtitle"><strong>2022-09-06</strong></p>
+<p>Today I was reviewing the difference between types and typeclasses in Haskell.</p>
+<h2 id="the-data-keyword">The <code>data</code> keyword</h2>
+<p>The data keyword makes a new type.</p>
+<p>This could be like a struct, with multiple named fields:</p>
+<pre data-lang="haskell" style="background-color:#2b303b;color:#c0c5ce;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#b48ead;">data </span><span style="color:#d08770;">Card </span><span>= </span><span style="color:#d08770;">Card</span><span>  { suit :: </span><span style="color:#d08770;">Suit</span><span>,
+</span><span>                    </span><span style="color:#8fa1b3;">value </span><span style="color:#b48ead;">:: Value</span><span> }
+</span><span>                  </span><span style="color:#b48ead;">deriving</span><span> (</span><span style="color:#a3be8c;">Eq</span><span>, </span><span style="color:#a3be8c;">Show</span><span>)
+</span></code></pre>
+<p>It could have one field:</p>
+<pre data-lang="haskell" style="background-color:#2b303b;color:#c0c5ce;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#b48ead;">data </span><span style="color:#d08770;">Thing</span><span> a = </span><span style="color:#d08770;">This</span><span> a | </span><span style="color:#d08770;">That</span><span> a </span><span style="color:#b48ead;">deriving </span><span style="color:#d08770;">Show
+</span></code></pre>
+<p>Or it might not have any fields (like an enum):</p>
+<pre data-lang="haskell" style="background-color:#2b303b;color:#c0c5ce;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#b48ead;">data </span><span style="color:#d08770;">Suit </span><span>= </span><span style="color:#d08770;">Clubs </span><span>| </span><span style="color:#d08770;">Diamonds </span><span>| </span><span style="color:#d08770;">Hearts </span><span>| </span><span style="color:#d08770;">Spades
+</span><span>            </span><span style="color:#b48ead;">deriving</span><span> (</span><span style="color:#a3be8c;">Eq</span><span>, </span><span style="color:#a3be8c;">Show</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">data </span><span style="color:#d08770;">Value </span><span>= </span><span style="color:#d08770;">Ace </span><span>| </span><span style="color:#d08770;">Two </span><span>| </span><span style="color:#d08770;">Three </span><span>| </span><span style="color:#d08770;">Four </span><span>| </span><span style="color:#d08770;">Five </span><span>| </span><span style="color:#d08770;">Six </span><span>| </span><span style="color:#d08770;">Seven </span><span>| </span><span style="color:#d08770;">Eight </span><span>| </span><span style="color:#d08770;">Nine </span><span>| </span><span style="color:#d08770;">Ten </span><span>| </span><span style="color:#d08770;">Jack </span><span>| </span><span style="color:#d08770;">Queen </span><span>| </span><span style="color:#d08770;">King
+</span><span>             </span><span style="color:#b48ead;">deriving</span><span> (</span><span style="color:#a3be8c;">Eq</span><span>, </span><span style="color:#a3be8c;">Ord</span><span>, </span><span style="color:#a3be8c;">Show</span><span>)
+</span></code></pre>
+<h2 id="the-type-keyword">The <code>type</code> keyword</h2>
+<p>The type keyword makes a type synonym: it let's you give an existing type a new name:</p>
+<pre data-lang="haskell" style="background-color:#2b303b;color:#c0c5ce;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#b48ead;">type </span><span style="color:#d08770;">Deck </span><span>= [</span><span style="color:#d08770;">Card</span><span>]
+</span></code></pre>
+<p>This is cheaper than making a new type, as the compiler doesn't have to make a new type - it just let's you call an old one by a new name.</p>
+<h2 id="the-class-keyword">The <code>class</code> keyword</h2>
+<p>The class keyword makes a new typeclass.  Typeclasses describe <em>behaviour</em> in Haskell.</p>
+<p>Eq, Ord, Show are all type classes:</p>
+<ul>
+<li>
+<p>Members of Eq can be compared with the == function</p>
+</li>
+<li>
+<p>Members of Ord can be compared with &lt;,&gt;,&gt;=, etc</p>
+</li>
+<li>
+<p>Members of show can be rendered (show converts to a string, which can then be printed)</p>
+</li>
+</ul>
+<p>In the examples above we can 'derive' Eq and Show because the compiler can check if the values are the same and convert them to a string.  With the Value type we also derived Ord - the compiler orders them in the order they are declared.</p>
+<p>Typeclasses are like interfaces in object oriented programming.  They contain function declarations that must be implemented to conform to the interface.</p>
+<p>To implement Ord we can just implement compare and the compiler can deduce the other functions needed.  Here's an example:</p>
+<pre data-lang="haskell" style="background-color:#2b303b;color:#c0c5ce;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#b48ead;">data </span><span style="color:#d08770;">Play </span><span>= </span><span style="color:#d08770;">Rock </span><span>| </span><span style="color:#d08770;">Paper </span><span>| </span><span style="color:#d08770;">Scissors
+</span><span>            </span><span style="color:#b48ead;">deriving</span><span> (</span><span style="color:#a3be8c;">Show</span><span>, </span><span style="color:#a3be8c;">Eq</span><span>)
+</span><span>
+</span><span style="color:#b48ead;">instance Ord Play where
+</span><span>    compare </span><span style="color:#d08770;">Paper Rock </span><span>= </span><span style="color:#d08770;">GT
+</span><span>    compare </span><span style="color:#d08770;">Rock Scissors </span><span>= </span><span style="color:#d08770;">GT
+</span><span>    compare </span><span style="color:#d08770;">Scissors Paper </span><span>= </span><span style="color:#d08770;">GT
+</span><span>    compare _ _ = </span><span style="color:#d08770;">LT
+</span></code></pre>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>

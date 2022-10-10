@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022: week 9 day 3 - making HTTP requests in Haskell
+</h1>
+<p class="subtitle"><strong>2022-10-05</strong></p>
+<p>Today I spent some time trying to make HTTP requests in Haskell, so I decided to write a post about how I did that.</p>
+<p>The easiest to use library I came across is <a href="https://hackage.haskell.org/package/wreq">wreq</a>, and there is an <a href="http://www.serpentine.com/wreq/tutorial.html">excellent tutorial</a> about how to use it.</p>
+<p>This is the code I wrote:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>{-# LANGUAGE OverloadedStrings #-}
+</span><span>
+</span><span>module Main (main) where
+</span><span>
+</span><span>import Control.Lens
+</span><span>import Data.Aeson.Lens (_String, key)
+</span><span>import Network.Wreq                                                                          
+</span><span>
+</span><span>main :: IO ()
+</span><span>main = do
+</span><span>  print &quot;Input url to GET&quot;
+</span><span>  url &lt;- getLine
+</span><span>  response &lt;- get url                                         
+</span><span>  print $ response ^. responseStatus ^. statusMessage
+</span><span>  print $ response ^. responseBody . key &quot;name&quot; . _String
+</span></code></pre>
+<p>This code gets a user inputted url and makes a get request to that url.  It then prints the response status message and the value of the &quot;name&quot; attribute in the response body.  There are a couple of interesting things here:</p>
+<h3 id="the-overloadedstrings-pragma">The OverloadedStrings pragma</h3>
+<p>There are a few different string types in Haskell - String, Text, ByteString.  The <code>{-# LANGUAGE OverloadedStrings #-}</code> pragma allows the different types be operated on interchangeably via the <code>IsString</code> typeclass.  This is similar to how the <code>Num</code> typeclass allows different number types to be operated.  Overloaded strings are useful when working with strings from different places (http requests and user input).</p>
+<h3 id="lenses">Lenses</h3>
+<p><code>response ^. responseStatus</code> is lens syntax allowing data type fields to be accessed.  In an imperative language, responseStatus would be an attribute of response, and we'd access it like: <code>response.responseStatus</code>.</p>
+<p>In Haskell response is a data type, and unpacking the fields is usually done with pattern matching.  Using lenses allows it to be done more succinctly.</p>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 Days 14 &amp; 15 - Monoids
+</h1>
+<p class="subtitle"><strong>2022-08-29</strong></p>
+<h2 id="reflections-on-the-last-couple-of-days">Reflections on the last couple of days</h2>
+<p>On Thursday and Friday I pair programmed with Isaac on his Rust project and studied some category theory.  Pair programming was really fun!  Rust seems like a really cool language and set up was surprisingly easy.  It's also just really fun to program in a new language with someone who already knows it.</p>
+<p>Also, I decided to drop my one post a day commitment - from now on I'll combine posts when I'm working on the same things or I don't feel like writing.</p>
+<h2 id="monoids">Monoids</h2>
+<p>One of the things I learnt about category theory is monoids.  Monoids are a special kind of category.  A category is a set of objects and transformations (called morphisms) that map between members of the set.</p>
+<p>So, for example, natural numbers (1,2,3,...) with the morphism <code>+</code> is a category.</p>
+<p>A monoid is a category that meets special conditions:</p>
+<ul>
+<li>
+<p>there has to be a binary operation transformation (ie. it takes two operands/ arguments) eg. <code>+</code></p>
+</li>
+<li>
+<p>there has to be an 'identity' transformation.  This means there has to be a value that can be combined with the binary operation and applied to every member of the set without changing it.  So in our example that would be <code>+ 0</code> eg. if we apply <code>+ 0</code> to 1, the result is 1 (1 is unchanged).</p>
+</li>
+</ul>
+<p>This pattern comes up a lot in programming.  Some examples:</p>
+<ul>
+<li>
+<p>the set of <code>{True,False}</code>, the morphism <code>all</code>, and the identity value <code>True</code></p>
+</li>
+<li>
+<p><code>{True,False}</code>,  <code>any</code>, <code>False</code></p>
+</li>
+<li>
+<p>any set of strings,  <code>concat</code>, and <code>&quot;&quot;</code></p>
+</li>
+<li>
+<p>any set of integers,  <code>MIN</code>, and <code>INFINITY</code></p>
+</li>
+<li>
+<p>reduce</p>
+</li>
+</ul>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>
