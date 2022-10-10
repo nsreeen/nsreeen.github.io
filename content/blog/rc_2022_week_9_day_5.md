@@ -30,7 +30,7 @@ The evaluation happens something like this:
 
 (((((0 - 1) - 2) - 3) - 4) - 5)
 
-Because Haskell is lazy, the first expression ('(0+1)') will not be evaluated until the whole thing is ready to be evaluated.  First, a thunk will be built up on the heap.  Then when the whole expression is ready to be evaluated, it will be evluated starting with the first sub expression ('(0-1)').
+Because Haskell is lazy, the first expression ('(0-1)') will not be evaluated until the whole thing is ready to be evaluated.  First, a thunk will be built up on the heap.  Then when the whole expression is ready to be evaluated, it will be evluated starting with the first sub expression ('(0-1)').
 
 ## foldr
 I called my wrapper in ghci like this: `fr (-) 0 [1..5]`, and the following printed to the terminal:

@@ -129,7 +129,7 @@ code {
 <p>So the output is -15, and (-) is applied to each item in the list starting with the accumulator (<code>acc</code>) and the first item in the list.</p>
 <p>The evaluation happens something like this:</p>
 <p>(((((0 - 1) - 2) - 3) - 4) - 5)</p>
-<p>Because Haskell is lazy, the first expression ('(0+1)') will not be evaluated until the whole thing is ready to be evaluated.  First, a thunk will be built up on the heap.  Then when the whole expression is ready to be evaluated, it will be evluated starting with the first sub expression ('(0-1)').</p>
+<p>Because Haskell is lazy, the first expression ('(0-1)') will not be evaluated until the whole thing is ready to be evaluated.  First, a thunk will be built up on the heap.  Then when the whole expression is ready to be evaluated, it will be evluated starting with the first sub expression ('(0-1)').</p>
 <h2 id="foldr">foldr</h2>
 <p>I called my wrapper in ghci like this: <code>fr (-) 0 [1..5]</code>, and the following printed to the terminal:</p>
 <pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>5 0

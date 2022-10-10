@@ -131,7 +131,7 @@ code {
 </span></code></pre>
 <p>This code gets a user inputted url and makes a get request to that url.  It then prints the response status message and the value of the &quot;name&quot; attribute in the response body.  There are a couple of interesting things here:</p>
 <h3 id="the-overloadedstrings-pragma">The OverloadedStrings pragma</h3>
-<p>There are a few different string types in Haskell - String, Text, ByteString.  The <code>{-# LANGUAGE OverloadedStrings #-}</code> pragma allows the different types be operated on interchangeably via the <code>IsString</code> typeclass.  This is similar to how the <code>Num</code> typeclass allows different number types to be operated.  Overloaded strings are useful when working with strings from different places (http requests and user input).</p>
+<p>There are a few different string types in Haskell - String, Text, ByteString.  The <code>{-# LANGUAGE OverloadedStrings #-}</code> pragma allows the different types be operated on interchangeably via the <code>IsString</code> typeclass.  This is similar to how the <code>Num</code> typeclass allows different number types to be operated on.  Overloaded strings are useful when working with strings from different places (eg. http requests and user input).</p>
 <h3 id="lenses">Lenses</h3>
 <p><code>response ^. responseStatus</code> is lens syntax allowing data type fields to be accessed.  In an imperative language, responseStatus would be an attribute of response, and we'd access it like: <code>response.responseStatus</code>.</p>
 <p>In Haskell response is a data type, and unpacking the fields is usually done with pattern matching.  Using lenses allows it to be done more succinctly.</p>

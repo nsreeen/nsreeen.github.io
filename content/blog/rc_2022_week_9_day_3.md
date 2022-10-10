@@ -30,7 +30,7 @@ This code gets a user inputted url and makes a get request to that url.  It then
 
 ### The OverloadedStrings pragma
 
-There are a few different string types in Haskell - String, Text, ByteString.  The `{-# LANGUAGE OverloadedStrings #-}` pragma allows the different types be operated on interchangeably via the `IsString` typeclass.  This is similar to how the `Num` typeclass allows different number types to be operated.  Overloaded strings are useful when working with strings from different places (http requests and user input).
+There are a few different string types in Haskell - String, Text, ByteString.  The `{-# LANGUAGE OverloadedStrings #-}` pragma allows the different types be operated on interchangeably via the `IsString` typeclass.  This is similar to how the `Num` typeclass allows different number types to be operated on.  Overloaded strings are useful when working with strings from different places (eg. http requests and user input).
 
 ### Lenses
 
