@@ -9,6 +9,11 @@ build_search_index = false
 
 output_dir = "docs"
 
+## tags config
+taxonomies = [
+    {name = "tags", rss = true, paginate_by=5},
+]
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
