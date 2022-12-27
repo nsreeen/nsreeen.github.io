@@ -1,5 +1,5 @@
 +++
-title = "RC 2022: week 9 day 5 - foldl vs foldr vs foldl'"
+title = "RC 2022 week 9 day 5 - foldl vs foldr vs foldl'"
 date = 2022-10-07
 +++
 

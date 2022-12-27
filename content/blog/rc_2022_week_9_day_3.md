@@ -1,5 +1,5 @@
 +++
-title = "RC 2022: week 9 day 3 - making HTTP requests in Haskell"
+title = "RC 2022 week 9 day 3 - making HTTP requests in Haskell"
 date = 2022-10-05
 +++
 
