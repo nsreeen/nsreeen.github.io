@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 - decoding URIs
+</h1>
+<p class="subtitle"><strong>2022-10-14</strong></p>
+<p>I was working with wikipedia URLs recently, and wanted to display URLs which were encoded with escaped characters (eg. &quot;https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life&quot;).</p>
+<p>At first I thought this would be tricky, but then I found out this is really easy to do in JavaScript.  Which makes sense, since it's the kind of thing that's probably needed quite often in frontend work.</p>
+<p>It's called <a href="https://en.wikipedia.org/wiki/Percent-encoding">'percent encoding'</a> or 'URL encoding'.</p>
+<h3 id="what-is-percent-encoding">What is percent encoding?</h3>
+<p>URLs must use ASCII characters.  There are some characters that have special meaning, and therefore cannot be used as part of the URL.  For example, the <code>#</code> is used to navigate to sections within a page - if it was also used as part of the URL the browser wouldn't know how to interpret it.</p>
+<p>So if we want to use a reserved character as part of the URL, we have to encode it.  Instead of <code>#</code>, we use <code>%23</code>: a percent sign to flag the encoding and the ASCII value of the character.  <code>%27</code> encodes <code>'</code>.</p>
+<p>For example:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>decodeURIComponent(&quot;https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life&quot;)
+</span><span>=&gt; &quot;https://en.wikipedia.org/wiki/Conway&#39;s_Game_of_Life&quot;
+</span></code></pre>
+<h3 id="what-are-the-reserved-characters">What are the reserved characters?</h3>
+<p>The following characters are reserved:
+<code>! 	# 	$ 	&amp; 	' 	( 	) 	* 	+ 	, 	/ 	: 	; 	= 	? 	@ 	[ 	]</code></p>
+<h3 id="use-in-non-english-urls">Use in non English URLs</h3>
+<p>Percent encoding is also used for non English URLs: the non English characters are converted to their UTF-8 values, which makes them valid ASCII.  As with reserved character encoding, the <code>%</code> is used to flag that they are encoded characters.</p>
+<p>For example:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>decodeURI(&quot;https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9&quot;)
+</span><span>=&gt; &quot;https://ar.wikipedia.org/wiki/اللغة_العربية&quot;
+</span></code></pre>
+<p>The first few characters in the encoded URL are <code>%D8%A7</code>.  <code>D8A7</code> is the UTF-8 value of the Arabic letter <code>ا</code>.  This is the first letter of the Arabic words <code>اللغة_العربية</code>(Arabic is read right to left, but when encoded the letter order is reversed).</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>encodeURIComponent(&quot;ا&quot;)
+</span><span>=&gt; &quot;%D8%A7&quot;
+</span></code></pre>
+<hr />
+<p>I find these very specific JavaScript features really neat: I like that it's a generic modern programming language but also has a bunch of functionality that's very specific to the browser.</p>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>

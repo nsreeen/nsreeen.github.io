@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 - wikidegrees and runtimes
+</h1>
+<p class="subtitle"><strong>2022-10-20</strong></p>
+<p>Inspired by <a href="https://www.sixdegreesofwikipedia.com/">sixdegreesofwikipedia</a>, which finds the shortest path between two wikipedia articles, I made <a href="https://nsreeen.github.io/wikidegrees/">wikidegrees</a>.  Wikidegrees finds a random wikipedia article that is 6 degrees removed from the link provided to it.  I liked the idea of being able to explore in both directions (finding the connections between two points, or finding a new connected direction).</p>
+<h3 id="how-i-wrote-wikiedgrees">How I wrote wikiedgrees</h3>
+<p>I wrote it as a static web page which calls an API.  I wrote the server in Rust, using the <a href="https://github.com/tokio-rs/axum">axum framework</a>.</p>
+<p>The server takes a wikipedia URL, gets the page contents, parses it for URLs, chooses a random URL, and repeats that 6 times before returning the final URL. My code is just <a href="https://github.com/nsreeen/wikidegrees/blob/main/src/main.rs">one page</a> - which is partly because the service doesn't have to do much, but mostly because I wrote it with Rust and axum.</p>
+<h3 id="reflections-on-using-rust-axum-and-static-pages">Reflections on using Rust, axum, and static pages</h3>
+<p>I found using Rust and axum a joy.  The axum framework minimises boilerplate, and Rust is succinct and robust.  The only thing I didn't find immediately intuitive with Rust and axum was handling async code.  But once I got my head about it, I found it straightforward to do with axum.</p>
+<p>I really like writing small web apps as static pages that call a microservice - it's straightforward, fast, and minimises complexity.  Wikidegrees doesn't need user authenticaion, or any navigation, which made it an ideal project to write like this.</p>
+<h3 id="tokio-axum-and-runtimes">Tokio, axum, and runtimes</h3>
+<p>If a function in a web server has to wait for anything to happen before it can return (eg. it's calling another web server, or a database server) it's best for the function to be async.  That's so the server can handle other requests in the meantime, instead of just waiting around.</p>
+<p>To run async functions we need a runtime: that's code that will run async functions and coordinate them (by polling the result to see if it's still waiting for something else, ready to continue it's work, or finished and ready to return).</p>
+<p>Rust <em>doesn't</em> have an inbuilt runtime, unlike Javascript and some other languages.  axum doesn't have a built in runtime either, but it can be used with Tokio - which is a popular Rust runtime library.</p>
+<p>To create a Tokio runtime we mark a function as <code>async</code> and with <code>#[tokio::main]</code>.  This runtime function can then call other <code>async</code> functions.</p>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>

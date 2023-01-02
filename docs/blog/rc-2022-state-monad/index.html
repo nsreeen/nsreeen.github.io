@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+<style>
+body {
+  /* margin-top: 30px; */
+  /* color: #333333 !important; */
+  font-family: sans-serif;
+  font-size: 1.6em !important;
+  line-height: 1.5;
+}
+
+a {
+  color: #021245;
+  text-decoration: underline;
+ }
+a:hover {
+  color: #5384a2;
+}
+home-link {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+h1 {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+  background-color: #cadee0;
+}
+
+h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h3 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+h5 {
+  font-size: : 6px;
+}
+
+table {
+  margin: 20px;
+  border-spacing: 30px 0;
+  border-collapse: collapse;
+}
+
+td,th {
+  padding: 10px;
+  border: 1px solid grey;
+}
+
+/* .page-list-item {
+  list-style: none;
+  text-decoration: none;
+  margin-bottom: 5px;
+} */
+/* .page-list {
+  padding: 0;
+} */
+/*hr {
+  border: 1px solid grey;
+}*/
+/* header {
+  border-bottom: 10px solid #5384a2;
+} */
+img {
+  max-width: 50%;
+}
+.container {
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  max-width: 70%;
+  /*position: relative;*/
+}
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px solid grey;
+  font: 1.5em !important;;
+  /* bottom:0; */
+  height: 40px;
+}
+
+code {
+  color: #021245;
+  background-color: #dfe6e0;
+}
+
+</style>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h1 class="title">
+  RC 2022 - understanding the State monad
+</h1>
+<p class="subtitle"><strong>2022-10-27</strong></p>
+<p>The State monad is a bit different than more concrete monads like Maybe and Either, and I found it harder to get my head around.  Now I understand it better, I think it's really cool - it allows us to get the benefits of mutation, while maintaining the benefits of a pure function.</p>
+<p>I'm going to try to explain it in a way that would have helped me understand it more easily.</p>
+<h2 id="the-state-monad-encapsulates-a-computation">The State monad encapsulates a computation</h2>
+<p>Unlike monads like Maybe and Either, the State monad encapsulates both data and the computations that act on it.</p>
+<p>The State monad provides a context with a state and some code to run: the code can access and update the state.</p>
+<p>The State monad is initialised with the function to run and the initial state.  The State monad will call the function with the initial state, and keep track of the state.  Once the function has returned, the State monad will return the function's return value and the final state.</p>
+<h2 id="a-trivial-example">A trivial example</h2>
+<p>In this example a starting value of 0 is incremented until it is 5, and then the string &quot;computation finished&quot; is returned.<br />
+The full file, with imports, is available <a href="https://gist.github.com/nsreeen/6278ad66deaee034b82d148ec7133423">here</a>).</p>
+<pre data-lang="haskell" style="background-color:#2b303b;color:#c0c5ce;" class="language-haskell "><code class="language-haskell" data-lang="haskell"><span style="color:#8fa1b3;">main </span><span style="color:#b48ead;">:: IO </span><span>()
+</span><span>main = </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#b48ead;">let</span><span> initialState = </span><span style="color:#d08770;">1
+</span><span>    </span><span style="color:#b48ead;">let</span><span> (result, finalState) = runState myComputation initialState
+</span><span>    putStrLn &quot;</span><span style="color:#a3be8c;">result: </span><span>&quot; + result
+</span><span>    putStrLn &quot;</span><span style="color:#a3be8c;">finalState: </span><span>&quot; + finalState
+</span><span>
+</span><span style="color:#8fa1b3;">myComputation </span><span style="color:#b48ead;">:: State Int String
+</span><span>myComputation = </span><span style="color:#b48ead;">do
+</span><span>    state &lt;- get
+</span><span>    </span><span style="color:#b48ead;">if</span><span> state == </span><span style="color:#d08770;">5
+</span><span>    </span><span style="color:#b48ead;">then</span><span> return &quot;</span><span style="color:#a3be8c;">computation finished</span><span>&quot;
+</span><span>    </span><span style="color:#b48ead;">else do
+</span><span>      modify (+</span><span style="color:#d08770;">1</span><span>)
+</span><span>      myComputation
+</span></code></pre>
+<p>Running this code prints the following:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>result: computation finished
+</span><span>finalState: 5
+</span></code></pre>
+<h3 id="what-is-the-state-monad-doing-in-this-example">What is the State monad doing in this example?</h3>
+<ol>
+<li>The State monad is initialised with <code>myComputation</code> and an initial state value (0).</li>
+<li>The State monad calls <code>myComputation</code> with the initial value.</li>
+<li>The State monad keeps track of the value of the state, which can be accessed or updated inside <code>myComputation</code> (eg. using <code>get</code> and <code>modify</code>).</li>
+<li><code>myComputation</code> returns the string &quot;computation finished&quot; - this is the result of the computation.</li>
+<li>The State monad now returns the result of the computation (&quot;computation finished&quot;) and the final value of the state (5).</li>
+</ol>
+
+
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="col-sm-8 col-sm-offset-2 footer-content">
+      <script async defer src="https://www.recurse-scout.com/loader.js?t=d304529d7dd9725612669b298fef0b5c"></script>
+    </div>
+  </div>
+
+</body>
+
+</html>
